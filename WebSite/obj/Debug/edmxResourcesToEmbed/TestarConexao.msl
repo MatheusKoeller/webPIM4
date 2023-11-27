@@ -1,0 +1,435 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="masterModelStoreContainer" CdmEntityContainer="masterEntities">
+    <EntitySetMapping Name="cargos">
+      <EntityTypeMapping TypeName="masterModel.cargos">
+        <MappingFragment StoreEntitySet="cargos">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="nome_cargo" ColumnName="nome_cargo" />
+          <ScalarProperty Name="salario" ColumnName="salario" />
+          <ScalarProperty Name="nv_escolaridade" ColumnName="nv_escolaridade" />
+          <ScalarProperty Name="nv_exp" ColumnName="nv_exp" />
+          <ScalarProperty Name="departamento" ColumnName="departamento" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="carga_horaria" ColumnName="carga_horaria" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="faltas">
+      <EntityTypeMapping TypeName="masterModel.faltas">
+        <MappingFragment StoreEntitySet="faltas">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="funcionarios_ID" ColumnName="funcionarios_ID" />
+          <ScalarProperty Name="data_falta" ColumnName="data_falta" />
+          <ScalarProperty Name="motivo_falta" ColumnName="motivo_falta" />
+          <ScalarProperty Name="justificativa" ColumnName="justificativa" />
+          <ScalarProperty Name="observacoes" ColumnName="observacoes" />
+          <ScalarProperty Name="duracao_falta" ColumnName="duracao_falta" />
+          <ScalarProperty Name="tipo_falta" ColumnName="tipo_falta" />
+          <ScalarProperty Name="historico_faltas" ColumnName="historico_faltas" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="funcionarios">
+      <EntityTypeMapping TypeName="masterModel.funcionarios">
+        <MappingFragment StoreEntitySet="funcionarios">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="cpf" ColumnName="cpf" />
+          <ScalarProperty Name="rg" ColumnName="rg" />
+          <ScalarProperty Name="tel" ColumnName="tel" />
+          <ScalarProperty Name="gen" ColumnName="gen" />
+          <ScalarProperty Name="dt_ad" ColumnName="dt_ad" />
+          <ScalarProperty Name="nac" ColumnName="nac" />
+          <ScalarProperty Name="endereco" ColumnName="endereco" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="senha" ColumnName="senha" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="id_cargo" ColumnName="id_cargo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="holerite">
+      <EntityTypeMapping TypeName="masterModel.holerite">
+        <MappingFragment StoreEntitySet="holerite">
+          <ScalarProperty Name="data_emissao" ColumnName="data_emissao" />
+          <ScalarProperty Name="periodo_pagamento" ColumnName="periodo_pagamento" />
+          <ScalarProperty Name="total_salario" ColumnName="total_salario" />
+          <ScalarProperty Name="total_desconto" ColumnName="total_desconto" />
+          <ScalarProperty Name="total_liquido" ColumnName="total_liquido" />
+          <ScalarProperty Name="id_funcionario" ColumnName="id_funcionario" />
+          <ScalarProperty Name="beneficios" ColumnName="beneficios" />
+          <ScalarProperty Name="descontos" ColumnName="descontos" />
+          <ScalarProperty Name="status_pagamento" ColumnName="status_pagamento" />
+          <ScalarProperty Name="decimo_terceiro" ColumnName="decimo_terceiro" />
+          <ScalarProperty Name="salario_bruto" ColumnName="salario_bruto" />
+          <ScalarProperty Name="mes_ref" ColumnName="mes_ref" />
+          <ScalarProperty Name="ano_ref" ColumnName="ano_ref" />
+          <ScalarProperty Name="inss" ColumnName="inss" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pgm_horas">
+      <EntityTypeMapping TypeName="masterModel.pgm_horas">
+        <MappingFragment StoreEntitySet="pgm_horas">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Data_registro" ColumnName="Data_registro" />
+          <ScalarProperty Name="Hora_entrada" ColumnName="Hora_entrada" />
+          <ScalarProperty Name="Hora_saida" ColumnName="Hora_saida" />
+          <ScalarProperty Name="Hora_inicio_intervalo" ColumnName="Hora_inicio_intervalo" />
+          <ScalarProperty Name="Hora_fim_intervalo" ColumnName="Hora_fim_intervalo" />
+          <ScalarProperty Name="Horas_trabalhadas" ColumnName="Horas_trabalhadas" />
+          <ScalarProperty Name="Tipo_reg" ColumnName="Tipo_reg" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdac_history_internal">
+      <EntityTypeMapping TypeName="masterModel.sysdac_history_internal">
+        <MappingFragment StoreEntitySet="sysdac_history_internal">
+          <ScalarProperty Name="action_id" ColumnName="action_id" />
+          <ScalarProperty Name="sequence_id" ColumnName="sequence_id" />
+          <ScalarProperty Name="instance_id" ColumnName="instance_id" />
+          <ScalarProperty Name="action_type" ColumnName="action_type" />
+          <ScalarProperty Name="action_type_name" ColumnName="action_type_name" />
+          <ScalarProperty Name="dac_object_type" ColumnName="dac_object_type" />
+          <ScalarProperty Name="dac_object_type_name" ColumnName="dac_object_type_name" />
+          <ScalarProperty Name="action_status" ColumnName="action_status" />
+          <ScalarProperty Name="action_status_name" ColumnName="action_status_name" />
+          <ScalarProperty Name="required" ColumnName="required" />
+          <ScalarProperty Name="dac_object_name_pretran" ColumnName="dac_object_name_pretran" />
+          <ScalarProperty Name="dac_object_name_posttran" ColumnName="dac_object_name_posttran" />
+          <ScalarProperty Name="sqlscript" ColumnName="sqlscript" />
+          <ScalarProperty Name="payload" ColumnName="payload" />
+          <ScalarProperty Name="comments" ColumnName="comments" />
+          <ScalarProperty Name="error_string" ColumnName="error_string" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+          <ScalarProperty Name="date_created" ColumnName="date_created" />
+          <ScalarProperty Name="date_modified" ColumnName="date_modified" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdac_instances_internal">
+      <EntityTypeMapping TypeName="masterModel.sysdac_instances_internal">
+        <MappingFragment StoreEntitySet="sysdac_instances_internal">
+          <ScalarProperty Name="instance_id" ColumnName="instance_id" />
+          <ScalarProperty Name="instance_name" ColumnName="instance_name" />
+          <ScalarProperty Name="type_name" ColumnName="type_name" />
+          <ScalarProperty Name="type_version" ColumnName="type_version" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="type_stream" ColumnName="type_stream" />
+          <ScalarProperty Name="date_created" ColumnName="date_created" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="logins_Adm">
+      <EntityTypeMapping TypeName="masterModel.logins_Adm">
+        <MappingFragment StoreEntitySet="logins_Adm">
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="senha" ColumnName="senha" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdac_instances">
+      <EntityTypeMapping TypeName="masterModel.sysdac_instances">
+        <MappingFragment StoreEntitySet="sysdac_instances">
+          <ScalarProperty Name="instance_id" ColumnName="instance_id" />
+          <ScalarProperty Name="instance_name" ColumnName="instance_name" />
+          <ScalarProperty Name="type_name" ColumnName="type_name" />
+          <ScalarProperty Name="type_version" ColumnName="type_version" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="type_stream" ColumnName="type_stream" />
+          <ScalarProperty Name="date_created" ColumnName="date_created" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+          <ScalarProperty Name="database_name" ColumnName="database_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bandwidth_usage">
+      <EntityTypeMapping TypeName="masterModel.bandwidth_usage">
+        <MappingFragment StoreEntitySet="bandwidth_usage">
+          <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="database_name" ColumnName="database_name" />
+          <ScalarProperty Name="direction" ColumnName="direction" />
+          <ScalarProperty Name="class" ColumnName="class" />
+          <ScalarProperty Name="time_period" ColumnName="time_period" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="billing">
+      <EntityTypeMapping TypeName="masterModel.billing">
+        <MappingFragment StoreEntitySet="billing">
+          <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="database_name" ColumnName="database_name" />
+          <ScalarProperty Name="data1" ColumnName="data1" />
+          <ScalarProperty Name="data2" ColumnName="data2" />
+          <ScalarProperty Name="data3" ColumnName="data3" />
+          <ScalarProperty Name="data4" ColumnName="data4" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="billed" ColumnName="billed" />
+          <ScalarProperty Name="event_id" ColumnName="event_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="database_connection_stats">
+      <EntityTypeMapping TypeName="masterModel.database_connection_stats">
+        <MappingFragment StoreEntitySet="database_connection_stats">
+          <ScalarProperty Name="database_name" ColumnName="database_name" />
+          <ScalarProperty Name="start_time" ColumnName="start_time" />
+          <ScalarProperty Name="end_time" ColumnName="end_time" />
+          <ScalarProperty Name="success_count" ColumnName="success_count" />
+          <ScalarProperty Name="total_failure_count" ColumnName="total_failure_count" />
+          <ScalarProperty Name="connection_failure_count" ColumnName="connection_failure_count" />
+          <ScalarProperty Name="terminated_connection_count" ColumnName="terminated_connection_count" />
+          <ScalarProperty Name="throttled_connection_count" ColumnName="throttled_connection_count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="database_error_stats">
+      <EntityTypeMapping TypeName="masterModel.database_error_stats">
+        <MappingFragment StoreEntitySet="database_error_stats">
+          <ScalarProperty Name="database_name" ColumnName="database_name" />
+          <ScalarProperty Name="start_time" ColumnName="start_time" />
+          <ScalarProperty Name="end_time" ColumnName="end_time" />
+          <ScalarProperty Name="error_number" ColumnName="error_number" />
+          <ScalarProperty Name="error_count" ColumnName="error_count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="database_firewall_rules">
+      <EntityTypeMapping TypeName="masterModel.database_firewall_rules">
+        <MappingFragment StoreEntitySet="database_firewall_rules">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="start_ip_address" ColumnName="start_ip_address" />
+          <ScalarProperty Name="end_ip_address" ColumnName="end_ip_address" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+          <ScalarProperty Name="modify_date" ColumnName="modify_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="database_usage">
+      <EntityTypeMapping TypeName="masterModel.database_usage">
+        <MappingFragment StoreEntitySet="database_usage">
+          <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="sku" ColumnName="sku" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="dm_database_copies">
+      <EntityTypeMapping TypeName="masterModel.dm_database_copies">
+        <MappingFragment StoreEntitySet="dm_database_copies">
+          <ScalarProperty Name="database_id" ColumnName="database_id" />
+          <ScalarProperty Name="start_date" ColumnName="start_date" />
+          <ScalarProperty Name="modify_date" ColumnName="modify_date" />
+          <ScalarProperty Name="percent_complete" ColumnName="percent_complete" />
+          <ScalarProperty Name="error_code" ColumnName="error_code" />
+          <ScalarProperty Name="error_desc" ColumnName="error_desc" />
+          <ScalarProperty Name="error_severity" ColumnName="error_severity" />
+          <ScalarProperty Name="error_state" ColumnName="error_state" />
+          <ScalarProperty Name="copy_guid" ColumnName="copy_guid" />
+          <ScalarProperty Name="partner_server" ColumnName="partner_server" />
+          <ScalarProperty Name="partner_database" ColumnName="partner_database" />
+          <ScalarProperty Name="replication_state" ColumnName="replication_state" />
+          <ScalarProperty Name="replication_state_desc" ColumnName="replication_state_desc" />
+          <ScalarProperty Name="maximum_lag" ColumnName="maximum_lag" />
+          <ScalarProperty Name="is_continuous_copy" ColumnName="is_continuous_copy" />
+          <ScalarProperty Name="is_target_role" ColumnName="is_target_role" />
+          <ScalarProperty Name="is_offline_secondary" ColumnName="is_offline_secondary" />
+          <ScalarProperty Name="is_interlink_connected" ColumnName="is_interlink_connected" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="elastic_pool_resource_stats">
+      <EntityTypeMapping TypeName="masterModel.elastic_pool_resource_stats">
+        <MappingFragment StoreEntitySet="elastic_pool_resource_stats">
+          <ScalarProperty Name="start_time" ColumnName="start_time" />
+          <ScalarProperty Name="end_time" ColumnName="end_time" />
+          <ScalarProperty Name="elastic_pool_name" ColumnName="elastic_pool_name" />
+          <ScalarProperty Name="avg_cpu_percent" ColumnName="avg_cpu_percent" />
+          <ScalarProperty Name="avg_data_io_percent" ColumnName="avg_data_io_percent" />
+          <ScalarProperty Name="avg_log_write_percent" ColumnName="avg_log_write_percent" />
+          <ScalarProperty Name="avg_storage_percent" ColumnName="avg_storage_percent" />
+          <ScalarProperty Name="max_worker_percent" ColumnName="max_worker_percent" />
+          <ScalarProperty Name="max_session_percent" ColumnName="max_session_percent" />
+          <ScalarProperty Name="elastic_pool_dtu_limit" ColumnName="elastic_pool_dtu_limit" />
+          <ScalarProperty Name="elastic_pool_storage_limit_mb" ColumnName="elastic_pool_storage_limit_mb" />
+          <ScalarProperty Name="max_xtp_storage_percent" ColumnName="max_xtp_storage_percent" />
+          <ScalarProperty Name="avg_login_rate_percent" ColumnName="avg_login_rate_percent" />
+          <ScalarProperty Name="avg_instance_cpu_percent" ColumnName="avg_instance_cpu_percent" />
+          <ScalarProperty Name="avg_instance_memory_percent" ColumnName="avg_instance_memory_percent" />
+          <ScalarProperty Name="elastic_pool_cpu_limit" ColumnName="elastic_pool_cpu_limit" />
+          <ScalarProperty Name="avg_allocated_storage_percent" ColumnName="avg_allocated_storage_percent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="event_history_log">
+      <EntityTypeMapping TypeName="masterModel.event_history_log">
+        <MappingFragment StoreEntitySet="event_history_log">
+          <ScalarProperty Name="source_sequence_id" ColumnName="source_sequence_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="event_log">
+      <EntityTypeMapping TypeName="masterModel.event_log">
+        <MappingFragment StoreEntitySet="event_log">
+          <ScalarProperty Name="database_name" ColumnName="database_name" />
+          <ScalarProperty Name="start_time" ColumnName="start_time" />
+          <ScalarProperty Name="end_time" ColumnName="end_time" />
+          <ScalarProperty Name="event_category" ColumnName="event_category" />
+          <ScalarProperty Name="event_type" ColumnName="event_type" />
+          <ScalarProperty Name="event_subtype" ColumnName="event_subtype" />
+          <ScalarProperty Name="event_subtype_desc" ColumnName="event_subtype_desc" />
+          <ScalarProperty Name="severity" ColumnName="severity" />
+          <ScalarProperty Name="event_count" ColumnName="event_count" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="additional_data" ColumnName="additional_data" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="firewall_rules">
+      <EntityTypeMapping TypeName="masterModel.firewall_rules">
+        <MappingFragment StoreEntitySet="firewall_rules">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="start_ip_address" ColumnName="start_ip_address" />
+          <ScalarProperty Name="end_ip_address" ColumnName="end_ip_address" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+          <ScalarProperty Name="modify_date" ColumnName="modify_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="geo_replication_links">
+      <EntityTypeMapping TypeName="masterModel.geo_replication_links">
+        <MappingFragment StoreEntitySet="geo_replication_links">
+          <ScalarProperty Name="database_id" ColumnName="database_id" />
+          <ScalarProperty Name="start_date" ColumnName="start_date" />
+          <ScalarProperty Name="modify_date" ColumnName="modify_date" />
+          <ScalarProperty Name="link_guid" ColumnName="link_guid" />
+          <ScalarProperty Name="partner_server" ColumnName="partner_server" />
+          <ScalarProperty Name="partner_database" ColumnName="partner_database" />
+          <ScalarProperty Name="replication_state" ColumnName="replication_state" />
+          <ScalarProperty Name="replication_state_desc" ColumnName="replication_state_desc" />
+          <ScalarProperty Name="role" ColumnName="role" />
+          <ScalarProperty Name="role_desc" ColumnName="role_desc" />
+          <ScalarProperty Name="secondary_allow_connections" ColumnName="secondary_allow_connections" />
+          <ScalarProperty Name="secondary_allow_connections_desc" ColumnName="secondary_allow_connections_desc" />
+          <ScalarProperty Name="percent_copied" ColumnName="percent_copied" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="resource_stats">
+      <EntityTypeMapping TypeName="masterModel.resource_stats">
+        <MappingFragment StoreEntitySet="resource_stats">
+          <ScalarProperty Name="start_time" ColumnName="start_time" />
+          <ScalarProperty Name="end_time" ColumnName="end_time" />
+          <ScalarProperty Name="database_name" ColumnName="database_name" />
+          <ScalarProperty Name="sku" ColumnName="sku" />
+          <ScalarProperty Name="storage_in_megabytes" ColumnName="storage_in_megabytes" />
+          <ScalarProperty Name="avg_cpu_percent" ColumnName="avg_cpu_percent" />
+          <ScalarProperty Name="avg_data_io_percent" ColumnName="avg_data_io_percent" />
+          <ScalarProperty Name="avg_log_write_percent" ColumnName="avg_log_write_percent" />
+          <ScalarProperty Name="max_worker_percent" ColumnName="max_worker_percent" />
+          <ScalarProperty Name="max_session_percent" ColumnName="max_session_percent" />
+          <ScalarProperty Name="dtu_limit" ColumnName="dtu_limit" />
+          <ScalarProperty Name="xtp_storage_percent" ColumnName="xtp_storage_percent" />
+          <ScalarProperty Name="avg_login_rate_percent" ColumnName="avg_login_rate_percent" />
+          <ScalarProperty Name="avg_instance_cpu_percent" ColumnName="avg_instance_cpu_percent" />
+          <ScalarProperty Name="avg_instance_memory_percent" ColumnName="avg_instance_memory_percent" />
+          <ScalarProperty Name="cpu_limit" ColumnName="cpu_limit" />
+          <ScalarProperty Name="allocated_storage_in_megabytes" ColumnName="allocated_storage_in_megabytes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="resource_stats_ex">
+      <EntityTypeMapping TypeName="masterModel.resource_stats_ex">
+        <MappingFragment StoreEntitySet="resource_stats_ex">
+          <ScalarProperty Name="start_time" ColumnName="start_time" />
+          <ScalarProperty Name="end_time" ColumnName="end_time" />
+          <ScalarProperty Name="database_name" ColumnName="database_name" />
+          <ScalarProperty Name="low_key" ColumnName="low_key" />
+          <ScalarProperty Name="sku" ColumnName="sku" />
+          <ScalarProperty Name="resource_capacity" ColumnName="resource_capacity" />
+          <ScalarProperty Name="usage_in_seconds" ColumnName="usage_in_seconds" />
+          <ScalarProperty Name="storage_in_megabytes" ColumnName="storage_in_megabytes" />
+          <ScalarProperty Name="max_storage_in_megabytes" ColumnName="max_storage_in_megabytes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="resource_usage_ex">
+      <EntityTypeMapping TypeName="masterModel.resource_usage_ex">
+        <MappingFragment StoreEntitySet="resource_usage_ex">
+          <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="database_name" ColumnName="database_name" />
+          <ScalarProperty Name="low_key" ColumnName="low_key" />
+          <ScalarProperty Name="sku" ColumnName="sku" />
+          <ScalarProperty Name="resource_capacity" ColumnName="resource_capacity" />
+          <ScalarProperty Name="usage_in_seconds" ColumnName="usage_in_seconds" />
+          <ScalarProperty Name="storage_in_megabytes" ColumnName="storage_in_megabytes" />
+          <ScalarProperty Name="max_storage_in_megabytes" ColumnName="max_storage_in_megabytes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sql_logins">
+      <EntityTypeMapping TypeName="masterModel.sql_logins">
+        <MappingFragment StoreEntitySet="sql_logins">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="sid" ColumnName="sid" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="type_desc" ColumnName="type_desc" />
+          <ScalarProperty Name="is_disabled" ColumnName="is_disabled" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+          <ScalarProperty Name="modify_date" ColumnName="modify_date" />
+          <ScalarProperty Name="default_database_name" ColumnName="default_database_name" />
+          <ScalarProperty Name="default_language_name" ColumnName="default_language_name" />
+          <ScalarProperty Name="credential_id" ColumnName="credential_id" />
+          <ScalarProperty Name="is_policy_checked" ColumnName="is_policy_checked" />
+          <ScalarProperty Name="is_expiration_checked" ColumnName="is_expiration_checked" />
+          <ScalarProperty Name="password_hash" ColumnName="password_hash" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_sysdac_add_history_entry" FunctionName="masterModel.Store.sp_sysdac_add_history_entry" />
+    <FunctionImportMapping FunctionImportName="sp_sysdac_add_instance" FunctionName="masterModel.Store.sp_sysdac_add_instance" />
+    <FunctionImportMapping FunctionImportName="sp_sysdac_delete_instance" FunctionName="masterModel.Store.sp_sysdac_delete_instance" />
+    <FunctionImportMapping FunctionImportName="sp_sysdac_drop_database" FunctionName="masterModel.Store.sp_sysdac_drop_database">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="masterModel.sp_sysdac_drop_database_Result">
+          <ScalarProperty Name="databasename" ColumnName="databasename" />
+          <ScalarProperty Name="sqlscript" ColumnName="sqlscript" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_sysdac_ensure_dac_creator" FunctionName="masterModel.Store.sp_sysdac_ensure_dac_creator" />
+    <FunctionImportMapping FunctionImportName="sp_sysdac_rename_database" FunctionName="masterModel.Store.sp_sysdac_rename_database" />
+    <FunctionImportMapping FunctionImportName="sp_sysdac_resolve_pending_entry" FunctionName="masterModel.Store.sp_sysdac_resolve_pending_entry" />
+    <FunctionImportMapping FunctionImportName="sp_sysdac_rollback_all_pending_objects" FunctionName="masterModel.Store.sp_sysdac_rollback_all_pending_objects" />
+    <FunctionImportMapping FunctionImportName="sp_sysdac_rollback_committed_step" FunctionName="masterModel.Store.sp_sysdac_rollback_committed_step">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="masterModel.sp_sysdac_rollback_committed_step_Result">
+          <ScalarProperty Name="databasename" ColumnName="databasename" />
+          <ScalarProperty Name="sqlscript" ColumnName="sqlscript" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_sysdac_rollback_pending_object" FunctionName="masterModel.Store.sp_sysdac_rollback_pending_object">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="masterModel.sp_sysdac_rollback_pending_object_Result">
+          <ScalarProperty Name="databasename" ColumnName="databasename" />
+          <ScalarProperty Name="sqlscript" ColumnName="sqlscript" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_sysdac_setreadonly_database" FunctionName="masterModel.Store.sp_sysdac_setreadonly_database" />
+    <FunctionImportMapping FunctionImportName="sp_sysdac_update_history_entry" FunctionName="masterModel.Store.sp_sysdac_update_history_entry" />
+    <FunctionImportMapping FunctionImportName="sp_sysdac_upgrade_instance" FunctionName="masterModel.Store.sp_sysdac_upgrade_instance" />
+    <FunctionImportMapping FunctionImportName="sp_add_database_events" FunctionName="masterModel.Store.sp_add_database_events" />
+    <FunctionImportMapping FunctionImportName="sp_cleanup_database_event_update_history_table" FunctionName="masterModel.Store.sp_cleanup_database_event_update_history_table" />
+    <FunctionImportMapping FunctionImportName="sp_cleanup_database_events" FunctionName="masterModel.Store.sp_cleanup_database_events" />
+    <FunctionImportMapping FunctionImportName="sp_cleanup_database_events_table" FunctionName="masterModel.Store.sp_cleanup_database_events_table" />
+  </EntityContainerMapping>
+</Mapping>

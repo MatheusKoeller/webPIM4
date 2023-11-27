@@ -1,0 +1,811 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="masterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="cargos">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nome_cargo" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="salario" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="nv_escolaridade" Type="varchar" MaxLength="50" />
+    <Property Name="nv_exp" Type="varchar" MaxLength="50" />
+    <Property Name="departamento" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="status" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="carga_horaria" Type="int" />
+  </EntityType>
+  <EntityType Name="faltas">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="funcionarios_ID" Type="int" />
+    <Property Name="data_falta" Type="datetime" Nullable="false" />
+    <Property Name="motivo_falta" Type="varchar" MaxLength="50" />
+    <Property Name="justificativa" Type="varchar" MaxLength="50" />
+    <Property Name="observacoes" Type="varchar" MaxLength="50" />
+    <Property Name="duracao_falta" Type="int" />
+    <Property Name="tipo_falta" Type="varchar" MaxLength="50" />
+    <Property Name="historico_faltas" Type="int" />
+  </EntityType>
+  <EntityType Name="funcionarios">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nome" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="cpf" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="rg" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="tel" Type="varchar" MaxLength="20" />
+    <Property Name="gen" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="dt_ad" Type="varchar" MaxLength="50" />
+    <Property Name="nac" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="endereco" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="usuario" Type="varchar" MaxLength="12" Nullable="false" />
+    <Property Name="senha" Type="varchar" MaxLength="8" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="50" />
+    <Property Name="id_cargo" Type="int" />
+  </EntityType>
+  <EntityType Name="holerite">
+    <Key>
+      <PropertyRef Name="data_emissao" />
+    </Key>
+    <Property Name="data_emissao" Type="int" Nullable="false" />
+    <Property Name="periodo_pagamento" Type="varchar" MaxLength="1" />
+    <Property Name="total_salario" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="total_desconto" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="total_liquido" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="id_funcionario" Type="int" />
+    <Property Name="beneficios" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="descontos" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="status_pagamento" Type="varchar" MaxLength="20" />
+    <Property Name="decimo_terceiro" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="salario_bruto" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="mes_ref" Type="int" />
+    <Property Name="ano_ref" Type="int" />
+    <Property Name="inss" Type="decimal" Precision="10" Scale="2" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'master.dbo.logins_Adm' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="logins_Adm">
+    <Key>
+      <PropertyRef Name="usuario" />
+      <PropertyRef Name="senha" />
+    </Key>
+    <Property Name="usuario" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="senha" Type="varchar" MaxLength="8" Nullable="false" />
+  </EntityType>
+  <EntityType Name="pgm_horas">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Data_registro" Type="datetime" Nullable="false" />
+    <Property Name="Hora_entrada" Type="datetime" Nullable="false" />
+    <Property Name="Hora_saida" Type="datetime" Nullable="false" />
+    <Property Name="Hora_inicio_intervalo" Type="datetime" Nullable="false" />
+    <Property Name="Hora_fim_intervalo" Type="datetime" Nullable="false" />
+    <Property Name="Horas_trabalhadas" Type="datetime" Nullable="false" />
+    <Property Name="Tipo_reg" Type="varchar" MaxLength="35" />
+  </EntityType>
+  <EntityType Name="sysdac_history_internal">
+    <Key>
+      <PropertyRef Name="action_id" />
+      <PropertyRef Name="sequence_id" />
+    </Key>
+    <Property Name="action_id" Type="int" Nullable="false" />
+    <Property Name="sequence_id" Type="int" Nullable="false" />
+    <Property Name="instance_id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="action_type" Type="tinyint" Nullable="false" />
+    <Property Name="action_type_name" Type="varchar" MaxLength="19" StoreGeneratedPattern="Computed" />
+    <Property Name="dac_object_type" Type="tinyint" Nullable="false" />
+    <Property Name="dac_object_type_name" Type="varchar" MaxLength="8" StoreGeneratedPattern="Computed" />
+    <Property Name="action_status" Type="tinyint" Nullable="false" />
+    <Property Name="action_status_name" Type="varchar" MaxLength="11" StoreGeneratedPattern="Computed" />
+    <Property Name="required" Type="bit" />
+    <Property Name="dac_object_name_pretran" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="dac_object_name_posttran" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="sqlscript" Type="nvarchar(max)" />
+    <Property Name="payload" Type="varbinary(max)" />
+    <Property Name="comments" Type="varchar(max)" Nullable="false" />
+    <Property Name="error_string" Type="nvarchar(max)" />
+    <Property Name="created_by" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="date_created" Type="datetime" Nullable="false" />
+    <Property Name="date_modified" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdac_instances_internal">
+    <Key>
+      <PropertyRef Name="instance_id" />
+    </Key>
+    <Property Name="instance_id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="instance_name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="type_name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="type_version" Type="nvarchar" MaxLength="64" Nullable="false" />
+    <Property Name="description" Type="nvarchar" MaxLength="4000" />
+    <Property Name="type_stream" Type="varbinary(max)" Nullable="false" />
+    <Property Name="date_created" Type="datetime" Nullable="false" />
+    <Property Name="created_by" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'master.dbo.sysdac_instances' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="sysdac_instances">
+    <Key>
+      <PropertyRef Name="instance_name" />
+      <PropertyRef Name="type_name" />
+      <PropertyRef Name="type_version" />
+      <PropertyRef Name="date_created" />
+      <PropertyRef Name="created_by" />
+      <PropertyRef Name="database_name" />
+    </Key>
+    <Property Name="instance_id" Type="uniqueidentifier" />
+    <Property Name="instance_name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="type_name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="type_version" Type="nvarchar" MaxLength="64" Nullable="false" />
+    <Property Name="description" Type="nvarchar" MaxLength="4000" />
+    <Property Name="type_stream" Type="varbinary(max)" />
+    <Property Name="date_created" Type="datetime" Nullable="false" />
+    <Property Name="created_by" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="database_name" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'master.sys.bandwidth_usage' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="bandwidth_usage">
+    <Key>
+      <PropertyRef Name="time" />
+      <PropertyRef Name="database_name" />
+      <PropertyRef Name="direction" />
+      <PropertyRef Name="class" />
+      <PropertyRef Name="time_period" />
+    </Key>
+    <Property Name="time" Type="datetime" Nullable="false" />
+    <Property Name="database_name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="direction" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="class" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="time_period" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="quantity" Type="decimal" Precision="38" Scale="6" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'master.sys.billing' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="billing">
+    <Key>
+      <PropertyRef Name="time" />
+      <PropertyRef Name="type" />
+      <PropertyRef Name="database_name" />
+      <PropertyRef Name="data1" />
+      <PropertyRef Name="data2" />
+      <PropertyRef Name="data3" />
+      <PropertyRef Name="data4" />
+      <PropertyRef Name="billed" />
+      <PropertyRef Name="event_id" />
+    </Key>
+    <Property Name="time" Type="datetime" Nullable="false" />
+    <Property Name="type" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="database_name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="data1" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="data2" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="data3" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="data4" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="quantity" Type="decimal" Precision="38" Scale="6" />
+    <Property Name="billed" Type="bit" Nullable="false" />
+    <Property Name="event_id" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'master.sys.database_connection_stats' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="database_connection_stats">
+    <Key>
+      <PropertyRef Name="database_name" />
+      <PropertyRef Name="start_time" />
+      <PropertyRef Name="end_time" />
+      <PropertyRef Name="success_count" />
+      <PropertyRef Name="total_failure_count" />
+      <PropertyRef Name="connection_failure_count" />
+      <PropertyRef Name="terminated_connection_count" />
+      <PropertyRef Name="throttled_connection_count" />
+    </Key>
+    <Property Name="database_name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="start_time" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="end_time" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="success_count" Type="int" Nullable="false" />
+    <Property Name="total_failure_count" Type="int" Nullable="false" />
+    <Property Name="connection_failure_count" Type="int" Nullable="false" />
+    <Property Name="terminated_connection_count" Type="int" Nullable="false" />
+    <Property Name="throttled_connection_count" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'master.sys.database_error_stats' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="database_error_stats">
+    <Key>
+      <PropertyRef Name="database_name" />
+      <PropertyRef Name="start_time" />
+      <PropertyRef Name="end_time" />
+      <PropertyRef Name="error_number" />
+      <PropertyRef Name="error_count" />
+    </Key>
+    <Property Name="database_name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="start_time" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="end_time" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="error_number" Type="int" Nullable="false" />
+    <Property Name="error_count" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'master.sys.database_firewall_rules' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="database_firewall_rules">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="start_ip_address" />
+      <PropertyRef Name="end_ip_address" />
+      <PropertyRef Name="create_date" />
+      <PropertyRef Name="modify_date" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="start_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="end_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="create_date" Type="datetime" Nullable="false" />
+    <Property Name="modify_date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'master.sys.database_usage' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="database_usage">
+    <Key>
+      <PropertyRef Name="sku" />
+    </Key>
+    <Property Name="time" Type="datetime" />
+    <Property Name="sku" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="quantity" Type="decimal" Precision="38" Scale="6" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'master.sys.dm_database_copies' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="dm_database_copies">
+    <Key>
+      <PropertyRef Name="copy_guid" />
+      <PropertyRef Name="is_continuous_copy" />
+      <PropertyRef Name="is_target_role" />
+      <PropertyRef Name="is_offline_secondary" />
+    </Key>
+    <Property Name="database_id" Type="int" />
+    <Property Name="start_date" Type="datetimeoffset" Precision="7" />
+    <Property Name="modify_date" Type="datetimeoffset" Precision="7" />
+    <Property Name="percent_complete" Type="real" />
+    <Property Name="error_code" Type="int" />
+    <Property Name="error_desc" Type="nvarchar" MaxLength="2048" />
+    <Property Name="error_severity" Type="int" />
+    <Property Name="error_state" Type="int" />
+    <Property Name="copy_guid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="partner_server" Type="nvarchar" MaxLength="128" />
+    <Property Name="partner_database" Type="nvarchar" MaxLength="128" />
+    <Property Name="replication_state" Type="tinyint" />
+    <Property Name="replication_state_desc" Type="nvarchar" MaxLength="256" />
+    <Property Name="maximum_lag" Type="int" />
+    <Property Name="is_continuous_copy" Type="bit" Nullable="false" />
+    <Property Name="is_target_role" Type="bit" Nullable="false" />
+    <Property Name="is_offline_secondary" Type="bit" Nullable="false" />
+    <Property Name="is_interlink_connected" Type="bit" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'master.sys.elastic_pool_resource_stats' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="elastic_pool_resource_stats">
+    <Key>
+      <PropertyRef Name="start_time" />
+      <PropertyRef Name="end_time" />
+      <PropertyRef Name="elastic_pool_name" />
+    </Key>
+    <Property Name="start_time" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="end_time" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="elastic_pool_name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="avg_cpu_percent" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="avg_data_io_percent" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="avg_log_write_percent" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="avg_storage_percent" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="max_worker_percent" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="max_session_percent" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="elastic_pool_dtu_limit" Type="int" />
+    <Property Name="elastic_pool_storage_limit_mb" Type="bigint" />
+    <Property Name="max_xtp_storage_percent" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="avg_login_rate_percent" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="avg_instance_cpu_percent" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="avg_instance_memory_percent" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="elastic_pool_cpu_limit" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="avg_allocated_storage_percent" Type="decimal" Precision="5" Scale="2" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'master.sys.event_history_log' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="event_history_log">
+    <Key>
+      <PropertyRef Name="source_sequence_id" />
+    </Key>
+    <Property Name="source_sequence_id" Type="bigint" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'master.sys.event_log' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="event_log">
+    <Key>
+      <PropertyRef Name="database_name" />
+      <PropertyRef Name="start_time" />
+      <PropertyRef Name="end_time" />
+      <PropertyRef Name="event_category" />
+      <PropertyRef Name="event_type" />
+      <PropertyRef Name="event_subtype" />
+      <PropertyRef Name="event_subtype_desc" />
+      <PropertyRef Name="severity" />
+      <PropertyRef Name="event_count" />
+      <PropertyRef Name="description" />
+    </Key>
+    <Property Name="database_name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="start_time" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="end_time" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="event_category" Type="nvarchar" MaxLength="64" Nullable="false" />
+    <Property Name="event_type" Type="nvarchar" MaxLength="64" Nullable="false" />
+    <Property Name="event_subtype" Type="int" Nullable="false" />
+    <Property Name="event_subtype_desc" Type="nvarchar" MaxLength="64" Nullable="false" />
+    <Property Name="severity" Type="int" Nullable="false" />
+    <Property Name="event_count" Type="int" Nullable="false" />
+    <Property Name="description" Type="nvarchar" MaxLength="64" Nullable="false" />
+    <Property Name="additional_data" Type="xml" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'master.sys.firewall_rules' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="firewall_rules">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="start_ip_address" />
+      <PropertyRef Name="end_ip_address" />
+      <PropertyRef Name="create_date" />
+      <PropertyRef Name="modify_date" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="start_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="end_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="create_date" Type="datetime" Nullable="false" />
+    <Property Name="modify_date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'master.sys.geo_replication_links' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="geo_replication_links">
+    <Key>
+      <PropertyRef Name="link_guid" />
+    </Key>
+    <Property Name="database_id" Type="int" />
+    <Property Name="start_date" Type="datetimeoffset" Precision="7" />
+    <Property Name="modify_date" Type="datetimeoffset" Precision="7" />
+    <Property Name="link_guid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="partner_server" Type="nvarchar" MaxLength="128" />
+    <Property Name="partner_database" Type="nvarchar" MaxLength="128" />
+    <Property Name="replication_state" Type="tinyint" />
+    <Property Name="replication_state_desc" Type="nvarchar" MaxLength="256" />
+    <Property Name="role" Type="tinyint" />
+    <Property Name="role_desc" Type="nvarchar" MaxLength="256" />
+    <Property Name="secondary_allow_connections" Type="tinyint" />
+    <Property Name="secondary_allow_connections_desc" Type="nvarchar" MaxLength="256" />
+    <Property Name="percent_copied" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'master.sys.resource_stats' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="resource_stats">
+    <Key>
+      <PropertyRef Name="start_time" />
+      <PropertyRef Name="end_time" />
+      <PropertyRef Name="database_name" />
+      <PropertyRef Name="sku" />
+    </Key>
+    <Property Name="start_time" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="end_time" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="database_name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="sku" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="storage_in_megabytes" Type="float" />
+    <Property Name="avg_cpu_percent" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="avg_data_io_percent" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="avg_log_write_percent" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="max_worker_percent" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="max_session_percent" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="dtu_limit" Type="int" />
+    <Property Name="xtp_storage_percent" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="avg_login_rate_percent" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="avg_instance_cpu_percent" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="avg_instance_memory_percent" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="cpu_limit" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="allocated_storage_in_megabytes" Type="float" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'master.sys.resource_stats_ex' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="resource_stats_ex">
+    <Key>
+      <PropertyRef Name="start_time" />
+      <PropertyRef Name="end_time" />
+      <PropertyRef Name="database_name" />
+      <PropertyRef Name="low_key" />
+      <PropertyRef Name="sku" />
+      <PropertyRef Name="resource_capacity" />
+    </Key>
+    <Property Name="start_time" Type="datetime2" Precision="2" Nullable="false" />
+    <Property Name="end_time" Type="datetime2" Precision="2" Nullable="false" />
+    <Property Name="database_name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="low_key" Type="varbinary" MaxLength="256" Nullable="false" />
+    <Property Name="sku" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="resource_capacity" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="usage_in_seconds" Type="int" />
+    <Property Name="storage_in_megabytes" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="max_storage_in_megabytes" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'master.sys.resource_usage_ex' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="resource_usage_ex">
+    <Key>
+      <PropertyRef Name="time" />
+      <PropertyRef Name="database_name" />
+      <PropertyRef Name="low_key" />
+      <PropertyRef Name="sku" />
+      <PropertyRef Name="resource_capacity" />
+    </Key>
+    <Property Name="time" Type="datetime" Nullable="false" />
+    <Property Name="database_name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="low_key" Type="varbinary" MaxLength="256" Nullable="false" />
+    <Property Name="sku" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="resource_capacity" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="usage_in_seconds" Type="int" />
+    <Property Name="storage_in_megabytes" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="max_storage_in_megabytes" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'master.sys.sql_logins' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="sql_logins">
+    <Key>
+      <PropertyRef Name="principal_id" />
+      <PropertyRef Name="sid" />
+      <PropertyRef Name="create_date" />
+      <PropertyRef Name="modify_date" />
+      <PropertyRef Name="password_hash" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="sid" Type="varbinary" MaxLength="85" Nullable="false" />
+    <Property Name="type" Type="char" MaxLength="1" />
+    <Property Name="type_desc" Type="nvarchar" MaxLength="60" />
+    <Property Name="is_disabled" Type="bit" />
+    <Property Name="create_date" Type="datetime" Nullable="false" />
+    <Property Name="modify_date" Type="datetime" Nullable="false" />
+    <Property Name="default_database_name" Type="nvarchar" MaxLength="128" />
+    <Property Name="default_language_name" Type="nvarchar" MaxLength="128" />
+    <Property Name="credential_id" Type="int" />
+    <Property Name="is_policy_checked" Type="bit" />
+    <Property Name="is_expiration_checked" Type="bit" />
+    <Property Name="password_hash" Type="varbinary" MaxLength="512" Nullable="false" />
+  </EntityType>
+  <Function Name="fn_sysdac_get_currentusername" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar" />
+  <Function Name="fn_sysdac_get_username" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+    <Parameter Name="user_sid" Type="varbinary" Mode="In" />
+  </Function>
+  <Function Name="fn_sysdac_is_currentuser_sa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="fn_sysdac_is_dac_creator" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="fn_sysdac_is_login_creator" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_sysdac_add_history_entry" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="sequence_id" Type="int" Mode="In" />
+    <Parameter Name="instance_id" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="action_type" Type="tinyint" Mode="In" />
+    <Parameter Name="action_status" Type="tinyint" Mode="In" />
+    <Parameter Name="dac_object_type" Type="tinyint" Mode="In" />
+    <Parameter Name="required" Type="bit" Mode="In" />
+    <Parameter Name="dac_object_name_pretran" Type="nvarchar" Mode="In" />
+    <Parameter Name="dac_object_name_posttran" Type="nvarchar" Mode="In" />
+    <Parameter Name="sqlscript" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="payload" Type="varbinary(max)" Mode="In" />
+    <Parameter Name="comments" Type="varchar(max)" Mode="In" />
+    <Parameter Name="error_string" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="action_id" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="sp_sysdac_add_instance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="type_name" Type="nvarchar" Mode="In" />
+    <Parameter Name="instance_id" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="instance_name" Type="nvarchar" Mode="In" />
+    <Parameter Name="type_version" Type="nvarchar" Mode="In" />
+    <Parameter Name="description" Type="nvarchar" Mode="In" />
+    <Parameter Name="type_stream" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_sysdac_delete_instance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="instance_id" Type="uniqueidentifier" Mode="In" />
+  </Function>
+  <Function Name="sp_sysdac_drop_database" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="database_name" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_sysdac_ensure_dac_creator" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_sysdac_rename_database" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="database_name" Type="nvarchar" Mode="In" />
+    <Parameter Name="new_name" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_sysdac_resolve_pending_entry" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="action_id" Type="int" Mode="In" />
+    <Parameter Name="sequence_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_sysdac_rollback_all_pending_objects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="return_scripts" Type="tinyint" Mode="In" />
+  </Function>
+  <Function Name="sp_sysdac_rollback_committed_step" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="action_id" Type="int" Mode="In" />
+    <Parameter Name="sequence_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_sysdac_rollback_pending_object" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="action_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_sysdac_setreadonly_database" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="database_name" Type="nvarchar" Mode="In" />
+    <Parameter Name="readonly" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="sp_sysdac_update_history_entry" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="action_id" Type="int" Mode="In" />
+    <Parameter Name="instance_id" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="action_type" Type="tinyint" Mode="In" />
+    <Parameter Name="dac_object_type" Type="tinyint" Mode="In" />
+    <Parameter Name="action_status" Type="tinyint" Mode="In" />
+    <Parameter Name="dac_object_name_pretran" Type="nvarchar" Mode="In" />
+    <Parameter Name="dac_object_name_posttran" Type="nvarchar" Mode="In" />
+    <Parameter Name="sqlscript" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="error_string" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_sysdac_upgrade_instance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="source_instance_id" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="instance_id" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="instance_name" Type="nvarchar" Mode="In" />
+    <Parameter Name="database_name" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_add_database_events" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="sys" />
+  <Function Name="sp_cleanup_database_event_update_history_table" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="sys">
+    <Parameter Name="expire_history_after_hours" Type="int" Mode="In" />
+    <Parameter Name="num_elem_to_del" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_cleanup_database_events" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="sys">
+    <Parameter Name="expire_after_days" Type="int" Mode="In" />
+    <Parameter Name="expire_after_events" Type="int" Mode="In" />
+    <Parameter Name="expire_history_after_hours" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_cleanup_database_events_table" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="sys">
+    <Parameter Name="expire_after_days" Type="int" Mode="In" />
+    <Parameter Name="expire_after_events" Type="int" Mode="In" />
+    <Parameter Name="num_elem_to_del" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="masterModelStoreContainer">
+    <EntitySet Name="cargos" EntityType="Self.cargos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="faltas" EntityType="Self.faltas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="funcionarios" EntityType="Self.funcionarios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="holerite" EntityType="Self.holerite" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="pgm_horas" EntityType="Self.pgm_horas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdac_history_internal" EntityType="Self.sysdac_history_internal" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdac_instances_internal" EntityType="Self.sysdac_instances_internal" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="logins_Adm" EntityType="Self.logins_Adm" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [logins_Adm].[usuario] AS [usuario], 
+    [logins_Adm].[senha] AS [senha]
+    FROM [dbo].[logins_Adm] AS [logins_Adm]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="sysdac_instances" EntityType="Self.sysdac_instances" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [sysdac_instances].[instance_id] AS [instance_id], 
+    [sysdac_instances].[instance_name] AS [instance_name], 
+    [sysdac_instances].[type_name] AS [type_name], 
+    [sysdac_instances].[type_version] AS [type_version], 
+    [sysdac_instances].[description] AS [description], 
+    [sysdac_instances].[type_stream] AS [type_stream], 
+    [sysdac_instances].[date_created] AS [date_created], 
+    [sysdac_instances].[created_by] AS [created_by], 
+    [sysdac_instances].[database_name] AS [database_name]
+    FROM [dbo].[sysdac_instances] AS [sysdac_instances]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="bandwidth_usage" EntityType="Self.bandwidth_usage" store:Type="Views" store:Schema="sys">
+      <DefiningQuery>SELECT 
+    [bandwidth_usage].[time] AS [time], 
+    [bandwidth_usage].[database_name] AS [database_name], 
+    [bandwidth_usage].[direction] AS [direction], 
+    [bandwidth_usage].[class] AS [class], 
+    [bandwidth_usage].[time_period] AS [time_period], 
+    [bandwidth_usage].[quantity] AS [quantity]
+    FROM [sys].[bandwidth_usage] AS [bandwidth_usage]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="billing" EntityType="Self.billing" store:Type="Views" store:Schema="sys">
+      <DefiningQuery>SELECT 
+    [billing].[time] AS [time], 
+    [billing].[type] AS [type], 
+    [billing].[database_name] AS [database_name], 
+    [billing].[data1] AS [data1], 
+    [billing].[data2] AS [data2], 
+    [billing].[data3] AS [data3], 
+    [billing].[data4] AS [data4], 
+    [billing].[quantity] AS [quantity], 
+    [billing].[billed] AS [billed], 
+    [billing].[event_id] AS [event_id]
+    FROM [sys].[billing] AS [billing]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="database_connection_stats" EntityType="Self.database_connection_stats" store:Type="Views" store:Schema="sys">
+      <DefiningQuery>SELECT 
+    [database_connection_stats].[database_name] AS [database_name], 
+    [database_connection_stats].[start_time] AS [start_time], 
+    [database_connection_stats].[end_time] AS [end_time], 
+    [database_connection_stats].[success_count] AS [success_count], 
+    [database_connection_stats].[total_failure_count] AS [total_failure_count], 
+    [database_connection_stats].[connection_failure_count] AS [connection_failure_count], 
+    [database_connection_stats].[terminated_connection_count] AS [terminated_connection_count], 
+    [database_connection_stats].[throttled_connection_count] AS [throttled_connection_count]
+    FROM [sys].[database_connection_stats] AS [database_connection_stats]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="database_error_stats" EntityType="Self.database_error_stats" store:Type="Views" store:Schema="sys">
+      <DefiningQuery>SELECT 
+    [database_error_stats].[database_name] AS [database_name], 
+    [database_error_stats].[start_time] AS [start_time], 
+    [database_error_stats].[end_time] AS [end_time], 
+    [database_error_stats].[error_number] AS [error_number], 
+    [database_error_stats].[error_count] AS [error_count]
+    FROM [sys].[database_error_stats] AS [database_error_stats]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" store:Type="Views" store:Schema="sys">
+      <DefiningQuery>SELECT 
+    [database_firewall_rules].[id] AS [id], 
+    [database_firewall_rules].[name] AS [name], 
+    [database_firewall_rules].[start_ip_address] AS [start_ip_address], 
+    [database_firewall_rules].[end_ip_address] AS [end_ip_address], 
+    [database_firewall_rules].[create_date] AS [create_date], 
+    [database_firewall_rules].[modify_date] AS [modify_date]
+    FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="database_usage" EntityType="Self.database_usage" store:Type="Views" store:Schema="sys">
+      <DefiningQuery>SELECT 
+    [database_usage].[time] AS [time], 
+    [database_usage].[sku] AS [sku], 
+    [database_usage].[quantity] AS [quantity]
+    FROM [sys].[database_usage] AS [database_usage]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="dm_database_copies" EntityType="Self.dm_database_copies" store:Type="Views" store:Schema="sys">
+      <DefiningQuery>SELECT 
+    [dm_database_copies].[database_id] AS [database_id], 
+    [dm_database_copies].[start_date] AS [start_date], 
+    [dm_database_copies].[modify_date] AS [modify_date], 
+    [dm_database_copies].[percent_complete] AS [percent_complete], 
+    [dm_database_copies].[error_code] AS [error_code], 
+    [dm_database_copies].[error_desc] AS [error_desc], 
+    [dm_database_copies].[error_severity] AS [error_severity], 
+    [dm_database_copies].[error_state] AS [error_state], 
+    [dm_database_copies].[copy_guid] AS [copy_guid], 
+    [dm_database_copies].[partner_server] AS [partner_server], 
+    [dm_database_copies].[partner_database] AS [partner_database], 
+    [dm_database_copies].[replication_state] AS [replication_state], 
+    [dm_database_copies].[replication_state_desc] AS [replication_state_desc], 
+    [dm_database_copies].[maximum_lag] AS [maximum_lag], 
+    [dm_database_copies].[is_continuous_copy] AS [is_continuous_copy], 
+    [dm_database_copies].[is_target_role] AS [is_target_role], 
+    [dm_database_copies].[is_offline_secondary] AS [is_offline_secondary], 
+    [dm_database_copies].[is_interlink_connected] AS [is_interlink_connected]
+    FROM [sys].[dm_database_copies] AS [dm_database_copies]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="elastic_pool_resource_stats" EntityType="Self.elastic_pool_resource_stats" store:Type="Views" store:Schema="sys">
+      <DefiningQuery>SELECT 
+    [elastic_pool_resource_stats].[start_time] AS [start_time], 
+    [elastic_pool_resource_stats].[end_time] AS [end_time], 
+    [elastic_pool_resource_stats].[elastic_pool_name] AS [elastic_pool_name], 
+    [elastic_pool_resource_stats].[avg_cpu_percent] AS [avg_cpu_percent], 
+    [elastic_pool_resource_stats].[avg_data_io_percent] AS [avg_data_io_percent], 
+    [elastic_pool_resource_stats].[avg_log_write_percent] AS [avg_log_write_percent], 
+    [elastic_pool_resource_stats].[avg_storage_percent] AS [avg_storage_percent], 
+    [elastic_pool_resource_stats].[max_worker_percent] AS [max_worker_percent], 
+    [elastic_pool_resource_stats].[max_session_percent] AS [max_session_percent], 
+    [elastic_pool_resource_stats].[elastic_pool_dtu_limit] AS [elastic_pool_dtu_limit], 
+    [elastic_pool_resource_stats].[elastic_pool_storage_limit_mb] AS [elastic_pool_storage_limit_mb], 
+    [elastic_pool_resource_stats].[max_xtp_storage_percent] AS [max_xtp_storage_percent], 
+    [elastic_pool_resource_stats].[avg_login_rate_percent] AS [avg_login_rate_percent], 
+    [elastic_pool_resource_stats].[avg_instance_cpu_percent] AS [avg_instance_cpu_percent], 
+    [elastic_pool_resource_stats].[avg_instance_memory_percent] AS [avg_instance_memory_percent], 
+    [elastic_pool_resource_stats].[elastic_pool_cpu_limit] AS [elastic_pool_cpu_limit], 
+    [elastic_pool_resource_stats].[avg_allocated_storage_percent] AS [avg_allocated_storage_percent]
+    FROM [sys].[elastic_pool_resource_stats] AS [elastic_pool_resource_stats]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="event_history_log" EntityType="Self.event_history_log" store:Type="Views" store:Schema="sys">
+      <DefiningQuery>SELECT 
+    [event_history_log].[source_sequence_id] AS [source_sequence_id]
+    FROM [sys].[event_history_log] AS [event_history_log]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="event_log" EntityType="Self.event_log" store:Type="Views" store:Schema="sys">
+      <DefiningQuery>SELECT 
+    [event_log].[database_name] AS [database_name], 
+    [event_log].[start_time] AS [start_time], 
+    [event_log].[end_time] AS [end_time], 
+    [event_log].[event_category] AS [event_category], 
+    [event_log].[event_type] AS [event_type], 
+    [event_log].[event_subtype] AS [event_subtype], 
+    [event_log].[event_subtype_desc] AS [event_subtype_desc], 
+    [event_log].[severity] AS [severity], 
+    [event_log].[event_count] AS [event_count], 
+    [event_log].[description] AS [description], 
+    [event_log].[additional_data] AS [additional_data]
+    FROM [sys].[event_log] AS [event_log]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="firewall_rules" EntityType="Self.firewall_rules" store:Type="Views" store:Schema="sys">
+      <DefiningQuery>SELECT 
+    [firewall_rules].[id] AS [id], 
+    [firewall_rules].[name] AS [name], 
+    [firewall_rules].[start_ip_address] AS [start_ip_address], 
+    [firewall_rules].[end_ip_address] AS [end_ip_address], 
+    [firewall_rules].[create_date] AS [create_date], 
+    [firewall_rules].[modify_date] AS [modify_date]
+    FROM [sys].[firewall_rules] AS [firewall_rules]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="geo_replication_links" EntityType="Self.geo_replication_links" store:Type="Views" store:Schema="sys">
+      <DefiningQuery>SELECT 
+    [geo_replication_links].[database_id] AS [database_id], 
+    [geo_replication_links].[start_date] AS [start_date], 
+    [geo_replication_links].[modify_date] AS [modify_date], 
+    [geo_replication_links].[link_guid] AS [link_guid], 
+    [geo_replication_links].[partner_server] AS [partner_server], 
+    [geo_replication_links].[partner_database] AS [partner_database], 
+    [geo_replication_links].[replication_state] AS [replication_state], 
+    [geo_replication_links].[replication_state_desc] AS [replication_state_desc], 
+    [geo_replication_links].[role] AS [role], 
+    [geo_replication_links].[role_desc] AS [role_desc], 
+    [geo_replication_links].[secondary_allow_connections] AS [secondary_allow_connections], 
+    [geo_replication_links].[secondary_allow_connections_desc] AS [secondary_allow_connections_desc], 
+    [geo_replication_links].[percent_copied] AS [percent_copied]
+    FROM [sys].[geo_replication_links] AS [geo_replication_links]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="resource_stats" EntityType="Self.resource_stats" store:Type="Views" store:Schema="sys">
+      <DefiningQuery>SELECT 
+    [resource_stats].[start_time] AS [start_time], 
+    [resource_stats].[end_time] AS [end_time], 
+    [resource_stats].[database_name] AS [database_name], 
+    [resource_stats].[sku] AS [sku], 
+    [resource_stats].[storage_in_megabytes] AS [storage_in_megabytes], 
+    [resource_stats].[avg_cpu_percent] AS [avg_cpu_percent], 
+    [resource_stats].[avg_data_io_percent] AS [avg_data_io_percent], 
+    [resource_stats].[avg_log_write_percent] AS [avg_log_write_percent], 
+    [resource_stats].[max_worker_percent] AS [max_worker_percent], 
+    [resource_stats].[max_session_percent] AS [max_session_percent], 
+    [resource_stats].[dtu_limit] AS [dtu_limit], 
+    [resource_stats].[xtp_storage_percent] AS [xtp_storage_percent], 
+    [resource_stats].[avg_login_rate_percent] AS [avg_login_rate_percent], 
+    [resource_stats].[avg_instance_cpu_percent] AS [avg_instance_cpu_percent], 
+    [resource_stats].[avg_instance_memory_percent] AS [avg_instance_memory_percent], 
+    [resource_stats].[cpu_limit] AS [cpu_limit], 
+    [resource_stats].[allocated_storage_in_megabytes] AS [allocated_storage_in_megabytes]
+    FROM [sys].[resource_stats] AS [resource_stats]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="resource_stats_ex" EntityType="Self.resource_stats_ex" store:Type="Views" store:Schema="sys">
+      <DefiningQuery>SELECT 
+    [resource_stats_ex].[start_time] AS [start_time], 
+    [resource_stats_ex].[end_time] AS [end_time], 
+    [resource_stats_ex].[database_name] AS [database_name], 
+    [resource_stats_ex].[low_key] AS [low_key], 
+    [resource_stats_ex].[sku] AS [sku], 
+    [resource_stats_ex].[resource_capacity] AS [resource_capacity], 
+    [resource_stats_ex].[usage_in_seconds] AS [usage_in_seconds], 
+    [resource_stats_ex].[storage_in_megabytes] AS [storage_in_megabytes], 
+    [resource_stats_ex].[max_storage_in_megabytes] AS [max_storage_in_megabytes]
+    FROM [sys].[resource_stats_ex] AS [resource_stats_ex]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="resource_usage_ex" EntityType="Self.resource_usage_ex" store:Type="Views" store:Schema="sys">
+      <DefiningQuery>SELECT 
+    [resource_usage_ex].[time] AS [time], 
+    [resource_usage_ex].[database_name] AS [database_name], 
+    [resource_usage_ex].[low_key] AS [low_key], 
+    [resource_usage_ex].[sku] AS [sku], 
+    [resource_usage_ex].[resource_capacity] AS [resource_capacity], 
+    [resource_usage_ex].[usage_in_seconds] AS [usage_in_seconds], 
+    [resource_usage_ex].[storage_in_megabytes] AS [storage_in_megabytes], 
+    [resource_usage_ex].[max_storage_in_megabytes] AS [max_storage_in_megabytes]
+    FROM [sys].[resource_usage_ex] AS [resource_usage_ex]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="sql_logins" EntityType="Self.sql_logins" store:Type="Views" store:Schema="sys">
+      <DefiningQuery>SELECT 
+    [sql_logins].[name] AS [name], 
+    [sql_logins].[principal_id] AS [principal_id], 
+    [sql_logins].[sid] AS [sid], 
+    [sql_logins].[type] AS [type], 
+    [sql_logins].[type_desc] AS [type_desc], 
+    [sql_logins].[is_disabled] AS [is_disabled], 
+    [sql_logins].[create_date] AS [create_date], 
+    [sql_logins].[modify_date] AS [modify_date], 
+    [sql_logins].[default_database_name] AS [default_database_name], 
+    [sql_logins].[default_language_name] AS [default_language_name], 
+    [sql_logins].[credential_id] AS [credential_id], 
+    [sql_logins].[is_policy_checked] AS [is_policy_checked], 
+    [sql_logins].[is_expiration_checked] AS [is_expiration_checked], 
+    [sql_logins].[password_hash] AS [password_hash]
+    FROM [sys].[sql_logins] AS [sql_logins]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

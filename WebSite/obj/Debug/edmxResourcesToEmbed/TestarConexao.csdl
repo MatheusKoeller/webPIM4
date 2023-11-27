@@ -1,0 +1,563 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="masterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="cargos">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nome_cargo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="salario" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="nv_escolaridade" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="nv_exp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="departamento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="carga_horaria" Type="Int32" />
+  </EntityType>
+  <EntityType Name="faltas">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="funcionarios_ID" Type="Int32" />
+    <Property Name="data_falta" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="motivo_falta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="justificativa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="observacoes" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="duracao_falta" Type="Int32" />
+    <Property Name="tipo_falta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="historico_faltas" Type="Int32" />
+  </EntityType>
+  <EntityType Name="funcionarios">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cpf" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="rg" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tel" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="gen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="dt_ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="nac" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="endereco" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="usuario" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="senha" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="id_cargo" Type="Int32" />
+  </EntityType>
+  <EntityType Name="holerite">
+    <Key>
+      <PropertyRef Name="data_emissao" />
+    </Key>
+    <Property Name="data_emissao" Type="Int32" Nullable="false" />
+    <Property Name="periodo_pagamento" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="total_salario" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="total_desconto" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="total_liquido" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="id_funcionario" Type="Int32" />
+    <Property Name="beneficios" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="descontos" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="status_pagamento" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="decimo_terceiro" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="salario_bruto" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="mes_ref" Type="Int32" />
+    <Property Name="ano_ref" Type="Int32" />
+    <Property Name="inss" Type="Decimal" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="pgm_horas">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Data_registro" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Hora_entrada" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Hora_saida" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Hora_inicio_intervalo" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Hora_fim_intervalo" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Horas_trabalhadas" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Tipo_reg" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sysdac_history_internal">
+    <Key>
+      <PropertyRef Name="action_id" />
+      <PropertyRef Name="sequence_id" />
+    </Key>
+    <Property Name="action_id" Type="Int32" Nullable="false" />
+    <Property Name="sequence_id" Type="Int32" Nullable="false" />
+    <Property Name="instance_id" Type="Guid" Nullable="false" />
+    <Property Name="action_type" Type="Byte" Nullable="false" />
+    <Property Name="action_type_name" Type="String" MaxLength="19" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="dac_object_type" Type="Byte" Nullable="false" />
+    <Property Name="dac_object_type_name" Type="String" MaxLength="8" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="action_status" Type="Byte" Nullable="false" />
+    <Property Name="action_status_name" Type="String" MaxLength="11" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="required" Type="Boolean" />
+    <Property Name="dac_object_name_pretran" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="dac_object_name_posttran" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="sqlscript" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="payload" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="error_string" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="created_by" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="date_created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="date_modified" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="sysdac_instances_internal">
+    <Key>
+      <PropertyRef Name="instance_id" />
+    </Key>
+    <Property Name="instance_id" Type="Guid" Nullable="false" />
+    <Property Name="instance_name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="type_name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="type_version" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="type_stream" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="date_created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="created_by" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="logins_Adm">
+    <Key>
+      <PropertyRef Name="usuario" />
+      <PropertyRef Name="senha" />
+    </Key>
+    <Property Name="usuario" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="senha" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdac_instances">
+    <Key>
+      <PropertyRef Name="instance_name" />
+      <PropertyRef Name="type_name" />
+      <PropertyRef Name="type_version" />
+      <PropertyRef Name="date_created" />
+      <PropertyRef Name="created_by" />
+      <PropertyRef Name="database_name" />
+    </Key>
+    <Property Name="instance_id" Type="Guid" />
+    <Property Name="instance_name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="type_name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="type_version" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="type_stream" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="date_created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="created_by" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="database_name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="bandwidth_usage">
+    <Key>
+      <PropertyRef Name="time" />
+      <PropertyRef Name="database_name" />
+      <PropertyRef Name="direction" />
+      <PropertyRef Name="class" />
+      <PropertyRef Name="time_period" />
+    </Key>
+    <Property Name="time" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="database_name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="direction" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="class" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="time_period" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="quantity" Type="Decimal" Precision="38" Scale="6" />
+  </EntityType>
+  <EntityType Name="billing">
+    <Key>
+      <PropertyRef Name="time" />
+      <PropertyRef Name="type" />
+      <PropertyRef Name="database_name" />
+      <PropertyRef Name="data1" />
+      <PropertyRef Name="data2" />
+      <PropertyRef Name="data3" />
+      <PropertyRef Name="data4" />
+      <PropertyRef Name="billed" />
+      <PropertyRef Name="event_id" />
+    </Key>
+    <Property Name="time" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="database_name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="data1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="data2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="data3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="data4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="quantity" Type="Decimal" Precision="38" Scale="6" />
+    <Property Name="billed" Type="Boolean" Nullable="false" />
+    <Property Name="event_id" Type="Guid" Nullable="false" />
+  </EntityType>
+  <EntityType Name="database_connection_stats">
+    <Key>
+      <PropertyRef Name="database_name" />
+      <PropertyRef Name="start_time" />
+      <PropertyRef Name="end_time" />
+      <PropertyRef Name="success_count" />
+      <PropertyRef Name="total_failure_count" />
+      <PropertyRef Name="connection_failure_count" />
+      <PropertyRef Name="terminated_connection_count" />
+      <PropertyRef Name="throttled_connection_count" />
+    </Key>
+    <Property Name="database_name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="start_time" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="end_time" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="success_count" Type="Int32" Nullable="false" />
+    <Property Name="total_failure_count" Type="Int32" Nullable="false" />
+    <Property Name="connection_failure_count" Type="Int32" Nullable="false" />
+    <Property Name="terminated_connection_count" Type="Int32" Nullable="false" />
+    <Property Name="throttled_connection_count" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="database_error_stats">
+    <Key>
+      <PropertyRef Name="database_name" />
+      <PropertyRef Name="start_time" />
+      <PropertyRef Name="end_time" />
+      <PropertyRef Name="error_number" />
+      <PropertyRef Name="error_count" />
+    </Key>
+    <Property Name="database_name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="start_time" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="end_time" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="error_number" Type="Int32" Nullable="false" />
+    <Property Name="error_count" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="database_firewall_rules">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="start_ip_address" />
+      <PropertyRef Name="end_ip_address" />
+      <PropertyRef Name="create_date" />
+      <PropertyRef Name="modify_date" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="start_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="end_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="modify_date" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="database_usage">
+    <Key>
+      <PropertyRef Name="sku" />
+    </Key>
+    <Property Name="time" Type="DateTime" Precision="3" />
+    <Property Name="sku" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="quantity" Type="Decimal" Precision="38" Scale="6" />
+  </EntityType>
+  <EntityType Name="dm_database_copies">
+    <Key>
+      <PropertyRef Name="copy_guid" />
+      <PropertyRef Name="is_continuous_copy" />
+      <PropertyRef Name="is_target_role" />
+      <PropertyRef Name="is_offline_secondary" />
+    </Key>
+    <Property Name="database_id" Type="Int32" />
+    <Property Name="start_date" Type="DateTimeOffset" Precision="7" />
+    <Property Name="modify_date" Type="DateTimeOffset" Precision="7" />
+    <Property Name="percent_complete" Type="Single" />
+    <Property Name="error_code" Type="Int32" />
+    <Property Name="error_desc" Type="String" MaxLength="2048" FixedLength="false" Unicode="true" />
+    <Property Name="error_severity" Type="Int32" />
+    <Property Name="error_state" Type="Int32" />
+    <Property Name="copy_guid" Type="Guid" Nullable="false" />
+    <Property Name="partner_server" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="partner_database" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="replication_state" Type="Byte" />
+    <Property Name="replication_state_desc" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="maximum_lag" Type="Int32" />
+    <Property Name="is_continuous_copy" Type="Boolean" Nullable="false" />
+    <Property Name="is_target_role" Type="Boolean" Nullable="false" />
+    <Property Name="is_offline_secondary" Type="Boolean" Nullable="false" />
+    <Property Name="is_interlink_connected" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="elastic_pool_resource_stats">
+    <Key>
+      <PropertyRef Name="start_time" />
+      <PropertyRef Name="end_time" />
+      <PropertyRef Name="elastic_pool_name" />
+    </Key>
+    <Property Name="start_time" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="end_time" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="elastic_pool_name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="avg_cpu_percent" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="avg_data_io_percent" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="avg_log_write_percent" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="avg_storage_percent" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="max_worker_percent" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="max_session_percent" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="elastic_pool_dtu_limit" Type="Int32" />
+    <Property Name="elastic_pool_storage_limit_mb" Type="Int64" />
+    <Property Name="max_xtp_storage_percent" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="avg_login_rate_percent" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="avg_instance_cpu_percent" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="avg_instance_memory_percent" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="elastic_pool_cpu_limit" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="avg_allocated_storage_percent" Type="Decimal" Precision="5" Scale="2" />
+  </EntityType>
+  <EntityType Name="event_history_log">
+    <Key>
+      <PropertyRef Name="source_sequence_id" />
+    </Key>
+    <Property Name="source_sequence_id" Type="Int64" Nullable="false" />
+  </EntityType>
+  <EntityType Name="event_log">
+    <Key>
+      <PropertyRef Name="database_name" />
+      <PropertyRef Name="start_time" />
+      <PropertyRef Name="end_time" />
+      <PropertyRef Name="event_category" />
+      <PropertyRef Name="event_type" />
+      <PropertyRef Name="event_subtype" />
+      <PropertyRef Name="event_subtype_desc" />
+      <PropertyRef Name="severity" />
+      <PropertyRef Name="event_count" />
+      <PropertyRef Name="description" />
+    </Key>
+    <Property Name="database_name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="start_time" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="end_time" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="event_category" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="event_type" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="event_subtype" Type="Int32" Nullable="false" />
+    <Property Name="event_subtype_desc" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="severity" Type="Int32" Nullable="false" />
+    <Property Name="event_count" Type="Int32" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="additional_data" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="firewall_rules">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="start_ip_address" />
+      <PropertyRef Name="end_ip_address" />
+      <PropertyRef Name="create_date" />
+      <PropertyRef Name="modify_date" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="start_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="end_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="modify_date" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="geo_replication_links">
+    <Key>
+      <PropertyRef Name="link_guid" />
+    </Key>
+    <Property Name="database_id" Type="Int32" />
+    <Property Name="start_date" Type="DateTimeOffset" Precision="7" />
+    <Property Name="modify_date" Type="DateTimeOffset" Precision="7" />
+    <Property Name="link_guid" Type="Guid" Nullable="false" />
+    <Property Name="partner_server" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="partner_database" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="replication_state" Type="Byte" />
+    <Property Name="replication_state_desc" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="role" Type="Byte" />
+    <Property Name="role_desc" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="secondary_allow_connections" Type="Byte" />
+    <Property Name="secondary_allow_connections_desc" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="percent_copied" Type="Int32" />
+  </EntityType>
+  <EntityType Name="resource_stats">
+    <Key>
+      <PropertyRef Name="start_time" />
+      <PropertyRef Name="end_time" />
+      <PropertyRef Name="database_name" />
+      <PropertyRef Name="sku" />
+    </Key>
+    <Property Name="start_time" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="end_time" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="database_name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="sku" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="storage_in_megabytes" Type="Double" />
+    <Property Name="avg_cpu_percent" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="avg_data_io_percent" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="avg_log_write_percent" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="max_worker_percent" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="max_session_percent" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="dtu_limit" Type="Int32" />
+    <Property Name="xtp_storage_percent" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="avg_login_rate_percent" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="avg_instance_cpu_percent" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="avg_instance_memory_percent" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="cpu_limit" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="allocated_storage_in_megabytes" Type="Double" />
+  </EntityType>
+  <EntityType Name="resource_stats_ex">
+    <Key>
+      <PropertyRef Name="start_time" />
+      <PropertyRef Name="end_time" />
+      <PropertyRef Name="database_name" />
+      <PropertyRef Name="low_key" />
+      <PropertyRef Name="sku" />
+      <PropertyRef Name="resource_capacity" />
+    </Key>
+    <Property Name="start_time" Type="DateTime" Nullable="false" Precision="2" />
+    <Property Name="end_time" Type="DateTime" Nullable="false" Precision="2" />
+    <Property Name="database_name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="low_key" Type="Binary" MaxLength="256" FixedLength="false" Nullable="false" />
+    <Property Name="sku" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="resource_capacity" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="usage_in_seconds" Type="Int32" />
+    <Property Name="storage_in_megabytes" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="max_storage_in_megabytes" Type="Decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="resource_usage_ex">
+    <Key>
+      <PropertyRef Name="time" />
+      <PropertyRef Name="database_name" />
+      <PropertyRef Name="low_key" />
+      <PropertyRef Name="sku" />
+      <PropertyRef Name="resource_capacity" />
+    </Key>
+    <Property Name="time" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="database_name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="low_key" Type="Binary" MaxLength="256" FixedLength="false" Nullable="false" />
+    <Property Name="sku" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="resource_capacity" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="usage_in_seconds" Type="Int32" />
+    <Property Name="storage_in_megabytes" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="max_storage_in_megabytes" Type="Decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="sql_logins">
+    <Key>
+      <PropertyRef Name="principal_id" />
+      <PropertyRef Name="sid" />
+      <PropertyRef Name="create_date" />
+      <PropertyRef Name="modify_date" />
+      <PropertyRef Name="password_hash" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="sid" Type="Binary" MaxLength="85" FixedLength="false" Nullable="false" />
+    <Property Name="type" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="type_desc" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Name="is_disabled" Type="Boolean" />
+    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="modify_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="default_database_name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="default_language_name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="credential_id" Type="Int32" />
+    <Property Name="is_policy_checked" Type="Boolean" />
+    <Property Name="is_expiration_checked" Type="Boolean" />
+    <Property Name="password_hash" Type="Binary" MaxLength="512" FixedLength="false" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="masterEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="cargos" EntityType="Self.cargos" />
+    <EntitySet Name="faltas" EntityType="Self.faltas" />
+    <EntitySet Name="funcionarios" EntityType="Self.funcionarios" />
+    <EntitySet Name="holerite" EntityType="Self.holerite" />
+    <EntitySet Name="pgm_horas" EntityType="Self.pgm_horas" />
+    <EntitySet Name="sysdac_history_internal" EntityType="Self.sysdac_history_internal" />
+    <EntitySet Name="sysdac_instances_internal" EntityType="Self.sysdac_instances_internal" />
+    <EntitySet Name="logins_Adm" EntityType="Self.logins_Adm" />
+    <EntitySet Name="sysdac_instances" EntityType="Self.sysdac_instances" />
+    <EntitySet Name="bandwidth_usage" EntityType="Self.bandwidth_usage" />
+    <EntitySet Name="billing" EntityType="Self.billing" />
+    <EntitySet Name="database_connection_stats" EntityType="Self.database_connection_stats" />
+    <EntitySet Name="database_error_stats" EntityType="Self.database_error_stats" />
+    <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" />
+    <EntitySet Name="database_usage" EntityType="Self.database_usage" />
+    <EntitySet Name="dm_database_copies" EntityType="Self.dm_database_copies" />
+    <EntitySet Name="elastic_pool_resource_stats" EntityType="Self.elastic_pool_resource_stats" />
+    <EntitySet Name="event_history_log" EntityType="Self.event_history_log" />
+    <EntitySet Name="event_log" EntityType="Self.event_log" />
+    <EntitySet Name="firewall_rules" EntityType="Self.firewall_rules" />
+    <EntitySet Name="geo_replication_links" EntityType="Self.geo_replication_links" />
+    <EntitySet Name="resource_stats" EntityType="Self.resource_stats" />
+    <EntitySet Name="resource_stats_ex" EntityType="Self.resource_stats_ex" />
+    <EntitySet Name="resource_usage_ex" EntityType="Self.resource_usage_ex" />
+    <EntitySet Name="sql_logins" EntityType="Self.sql_logins" />
+    <FunctionImport Name="sp_sysdac_add_history_entry">
+      <Parameter Name="sequence_id" Mode="In" Type="Int32" />
+      <Parameter Name="instance_id" Mode="In" Type="Guid" />
+      <Parameter Name="action_type" Mode="In" Type="Byte" />
+      <Parameter Name="action_status" Mode="In" Type="Byte" />
+      <Parameter Name="dac_object_type" Mode="In" Type="Byte" />
+      <Parameter Name="required" Mode="In" Type="Boolean" />
+      <Parameter Name="dac_object_name_pretran" Mode="In" Type="String" />
+      <Parameter Name="dac_object_name_posttran" Mode="In" Type="String" />
+      <Parameter Name="sqlscript" Mode="In" Type="String" />
+      <Parameter Name="payload" Mode="In" Type="Binary" />
+      <Parameter Name="comments" Mode="In" Type="String" />
+      <Parameter Name="error_string" Mode="In" Type="String" />
+      <Parameter Name="action_id" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_sysdac_add_instance">
+      <Parameter Name="type_name" Mode="In" Type="String" />
+      <Parameter Name="instance_id" Mode="In" Type="Guid" />
+      <Parameter Name="instance_name" Mode="In" Type="String" />
+      <Parameter Name="type_version" Mode="In" Type="String" />
+      <Parameter Name="description" Mode="In" Type="String" />
+      <Parameter Name="type_stream" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_sysdac_delete_instance">
+      <Parameter Name="instance_id" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="sp_sysdac_drop_database" ReturnType="Collection(masterModel.sp_sysdac_drop_database_Result)">
+      <Parameter Name="database_name" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_sysdac_ensure_dac_creator" />
+    <FunctionImport Name="sp_sysdac_rename_database">
+      <Parameter Name="database_name" Mode="In" Type="String" />
+      <Parameter Name="new_name" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_sysdac_resolve_pending_entry">
+      <Parameter Name="action_id" Mode="In" Type="Int32" />
+      <Parameter Name="sequence_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_sysdac_rollback_all_pending_objects">
+      <Parameter Name="return_scripts" Mode="In" Type="Byte" />
+    </FunctionImport>
+    <FunctionImport Name="sp_sysdac_rollback_committed_step" ReturnType="Collection(masterModel.sp_sysdac_rollback_committed_step_Result)">
+      <Parameter Name="action_id" Mode="In" Type="Int32" />
+      <Parameter Name="sequence_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_sysdac_rollback_pending_object" ReturnType="Collection(masterModel.sp_sysdac_rollback_pending_object_Result)">
+      <Parameter Name="action_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_sysdac_setreadonly_database">
+      <Parameter Name="database_name" Mode="In" Type="String" />
+      <Parameter Name="readonly" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="sp_sysdac_update_history_entry">
+      <Parameter Name="action_id" Mode="In" Type="Int32" />
+      <Parameter Name="instance_id" Mode="In" Type="Guid" />
+      <Parameter Name="action_type" Mode="In" Type="Byte" />
+      <Parameter Name="dac_object_type" Mode="In" Type="Byte" />
+      <Parameter Name="action_status" Mode="In" Type="Byte" />
+      <Parameter Name="dac_object_name_pretran" Mode="In" Type="String" />
+      <Parameter Name="dac_object_name_posttran" Mode="In" Type="String" />
+      <Parameter Name="sqlscript" Mode="In" Type="String" />
+      <Parameter Name="error_string" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_sysdac_upgrade_instance">
+      <Parameter Name="source_instance_id" Mode="In" Type="Guid" />
+      <Parameter Name="instance_id" Mode="In" Type="Guid" />
+      <Parameter Name="instance_name" Mode="In" Type="String" />
+      <Parameter Name="database_name" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_add_database_events" />
+    <FunctionImport Name="sp_cleanup_database_event_update_history_table">
+      <Parameter Name="expire_history_after_hours" Mode="In" Type="Int32" />
+      <Parameter Name="num_elem_to_del" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_cleanup_database_events">
+      <Parameter Name="expire_after_days" Mode="In" Type="Int32" />
+      <Parameter Name="expire_after_events" Mode="In" Type="Int32" />
+      <Parameter Name="expire_history_after_hours" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_cleanup_database_events_table">
+      <Parameter Name="expire_after_days" Mode="In" Type="Int32" />
+      <Parameter Name="expire_after_events" Mode="In" Type="Int32" />
+      <Parameter Name="num_elem_to_del" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="sp_sysdac_drop_database_Result">
+    <Property Type="String" Name="databasename" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="sqlscript" Nullable="true" MaxLength="1000" />
+  </ComplexType>
+  <ComplexType Name="sp_sysdac_rollback_committed_step_Result">
+    <Property Type="String" Name="databasename" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="sqlscript" Nullable="true" MaxLength="1000" />
+  </ComplexType>
+  <ComplexType Name="sp_sysdac_rollback_pending_object_Result">
+    <Property Type="String" Name="databasename" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="sqlscript" Nullable="true" MaxLength="1000" />
+  </ComplexType>
+</Schema>

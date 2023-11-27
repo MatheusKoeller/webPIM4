@@ -1,0 +1,1840 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="masterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="cargos">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nome_cargo" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="salario" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="nv_escolaridade" Type="varchar" MaxLength="50" />
+          <Property Name="nv_exp" Type="varchar" MaxLength="50" />
+          <Property Name="departamento" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="status" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="carga_horaria" Type="int" />
+        </EntityType>
+        <EntityType Name="faltas">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="funcionarios_ID" Type="int" />
+          <Property Name="data_falta" Type="datetime" Nullable="false" />
+          <Property Name="motivo_falta" Type="varchar" MaxLength="50" />
+          <Property Name="justificativa" Type="varchar" MaxLength="50" />
+          <Property Name="observacoes" Type="varchar" MaxLength="50" />
+          <Property Name="duracao_falta" Type="int" />
+          <Property Name="tipo_falta" Type="varchar" MaxLength="50" />
+          <Property Name="historico_faltas" Type="int" />
+        </EntityType>
+        <EntityType Name="funcionarios">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="cpf" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="rg" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="tel" Type="varchar" MaxLength="20" />
+          <Property Name="gen" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="dt_ad" Type="varchar" MaxLength="50" />
+          <Property Name="nac" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="endereco" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="usuario" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="senha" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="id_cargo" Type="int" />
+        </EntityType>
+        <EntityType Name="holerite">
+          <Key>
+            <PropertyRef Name="data_emissao" />
+          </Key>
+          <Property Name="data_emissao" Type="int" Nullable="false" />
+          <Property Name="periodo_pagamento" Type="varchar" MaxLength="1" />
+          <Property Name="total_salario" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="total_desconto" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="total_liquido" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="id_funcionario" Type="int" />
+          <Property Name="beneficios" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="descontos" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="status_pagamento" Type="varchar" MaxLength="20" />
+          <Property Name="decimo_terceiro" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="salario_bruto" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="mes_ref" Type="int" />
+          <Property Name="ano_ref" Type="int" />
+          <Property Name="inss" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'master.dbo.logins_Adm' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="logins_Adm">
+          <Key>
+            <PropertyRef Name="usuario" />
+            <PropertyRef Name="senha" />
+          </Key>
+          <Property Name="usuario" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="senha" Type="varchar" MaxLength="8" Nullable="false" />
+        </EntityType>
+        <EntityType Name="pgm_horas">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Data_registro" Type="datetime" Nullable="false" />
+          <Property Name="Hora_entrada" Type="datetime" Nullable="false" />
+          <Property Name="Hora_saida" Type="datetime" Nullable="false" />
+          <Property Name="Hora_inicio_intervalo" Type="datetime" Nullable="false" />
+          <Property Name="Hora_fim_intervalo" Type="datetime" Nullable="false" />
+          <Property Name="Horas_trabalhadas" Type="datetime" Nullable="false" />
+          <Property Name="Tipo_reg" Type="varchar" MaxLength="35" />
+        </EntityType>
+        <EntityType Name="sysdac_history_internal">
+          <Key>
+            <PropertyRef Name="action_id" />
+            <PropertyRef Name="sequence_id" />
+          </Key>
+          <Property Name="action_id" Type="int" Nullable="false" />
+          <Property Name="sequence_id" Type="int" Nullable="false" />
+          <Property Name="instance_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="action_type" Type="tinyint" Nullable="false" />
+          <Property Name="action_type_name" Type="varchar" MaxLength="19" StoreGeneratedPattern="Computed" />
+          <Property Name="dac_object_type" Type="tinyint" Nullable="false" />
+          <Property Name="dac_object_type_name" Type="varchar" MaxLength="8" StoreGeneratedPattern="Computed" />
+          <Property Name="action_status" Type="tinyint" Nullable="false" />
+          <Property Name="action_status_name" Type="varchar" MaxLength="11" StoreGeneratedPattern="Computed" />
+          <Property Name="required" Type="bit" />
+          <Property Name="dac_object_name_pretran" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="dac_object_name_posttran" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="sqlscript" Type="nvarchar(max)" />
+          <Property Name="payload" Type="varbinary(max)" />
+          <Property Name="comments" Type="varchar(max)" Nullable="false" />
+          <Property Name="error_string" Type="nvarchar(max)" />
+          <Property Name="created_by" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="date_created" Type="datetime" Nullable="false" />
+          <Property Name="date_modified" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdac_instances_internal">
+          <Key>
+            <PropertyRef Name="instance_id" />
+          </Key>
+          <Property Name="instance_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="instance_name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="type_name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="type_version" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="4000" />
+          <Property Name="type_stream" Type="varbinary(max)" Nullable="false" />
+          <Property Name="date_created" Type="datetime" Nullable="false" />
+          <Property Name="created_by" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'master.dbo.sysdac_instances' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="sysdac_instances">
+          <Key>
+            <PropertyRef Name="instance_name" />
+            <PropertyRef Name="type_name" />
+            <PropertyRef Name="type_version" />
+            <PropertyRef Name="date_created" />
+            <PropertyRef Name="created_by" />
+            <PropertyRef Name="database_name" />
+          </Key>
+          <Property Name="instance_id" Type="uniqueidentifier" />
+          <Property Name="instance_name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="type_name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="type_version" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="4000" />
+          <Property Name="type_stream" Type="varbinary(max)" />
+          <Property Name="date_created" Type="datetime" Nullable="false" />
+          <Property Name="created_by" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="database_name" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'master.sys.bandwidth_usage' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="bandwidth_usage">
+          <Key>
+            <PropertyRef Name="time" />
+            <PropertyRef Name="database_name" />
+            <PropertyRef Name="direction" />
+            <PropertyRef Name="class" />
+            <PropertyRef Name="time_period" />
+          </Key>
+          <Property Name="time" Type="datetime" Nullable="false" />
+          <Property Name="database_name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="direction" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="class" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="time_period" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="quantity" Type="decimal" Precision="38" Scale="6" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'master.sys.billing' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="billing">
+          <Key>
+            <PropertyRef Name="time" />
+            <PropertyRef Name="type" />
+            <PropertyRef Name="database_name" />
+            <PropertyRef Name="data1" />
+            <PropertyRef Name="data2" />
+            <PropertyRef Name="data3" />
+            <PropertyRef Name="data4" />
+            <PropertyRef Name="billed" />
+            <PropertyRef Name="event_id" />
+          </Key>
+          <Property Name="time" Type="datetime" Nullable="false" />
+          <Property Name="type" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="database_name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="data1" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="data2" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="data3" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="data4" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="quantity" Type="decimal" Precision="38" Scale="6" />
+          <Property Name="billed" Type="bit" Nullable="false" />
+          <Property Name="event_id" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'master.sys.database_connection_stats' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="database_connection_stats">
+          <Key>
+            <PropertyRef Name="database_name" />
+            <PropertyRef Name="start_time" />
+            <PropertyRef Name="end_time" />
+            <PropertyRef Name="success_count" />
+            <PropertyRef Name="total_failure_count" />
+            <PropertyRef Name="connection_failure_count" />
+            <PropertyRef Name="terminated_connection_count" />
+            <PropertyRef Name="throttled_connection_count" />
+          </Key>
+          <Property Name="database_name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="start_time" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="end_time" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="success_count" Type="int" Nullable="false" />
+          <Property Name="total_failure_count" Type="int" Nullable="false" />
+          <Property Name="connection_failure_count" Type="int" Nullable="false" />
+          <Property Name="terminated_connection_count" Type="int" Nullable="false" />
+          <Property Name="throttled_connection_count" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'master.sys.database_error_stats' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="database_error_stats">
+          <Key>
+            <PropertyRef Name="database_name" />
+            <PropertyRef Name="start_time" />
+            <PropertyRef Name="end_time" />
+            <PropertyRef Name="error_number" />
+            <PropertyRef Name="error_count" />
+          </Key>
+          <Property Name="database_name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="start_time" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="end_time" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="error_number" Type="int" Nullable="false" />
+          <Property Name="error_count" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'master.sys.database_firewall_rules' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="database_firewall_rules">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="start_ip_address" />
+            <PropertyRef Name="end_ip_address" />
+            <PropertyRef Name="create_date" />
+            <PropertyRef Name="modify_date" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="start_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="end_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="create_date" Type="datetime" Nullable="false" />
+          <Property Name="modify_date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'master.sys.database_usage' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="database_usage">
+          <Key>
+            <PropertyRef Name="sku" />
+          </Key>
+          <Property Name="time" Type="datetime" />
+          <Property Name="sku" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="quantity" Type="decimal" Precision="38" Scale="6" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'master.sys.dm_database_copies' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="dm_database_copies">
+          <Key>
+            <PropertyRef Name="copy_guid" />
+            <PropertyRef Name="is_continuous_copy" />
+            <PropertyRef Name="is_target_role" />
+            <PropertyRef Name="is_offline_secondary" />
+          </Key>
+          <Property Name="database_id" Type="int" />
+          <Property Name="start_date" Type="datetimeoffset" Precision="7" />
+          <Property Name="modify_date" Type="datetimeoffset" Precision="7" />
+          <Property Name="percent_complete" Type="real" />
+          <Property Name="error_code" Type="int" />
+          <Property Name="error_desc" Type="nvarchar" MaxLength="2048" />
+          <Property Name="error_severity" Type="int" />
+          <Property Name="error_state" Type="int" />
+          <Property Name="copy_guid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="partner_server" Type="nvarchar" MaxLength="128" />
+          <Property Name="partner_database" Type="nvarchar" MaxLength="128" />
+          <Property Name="replication_state" Type="tinyint" />
+          <Property Name="replication_state_desc" Type="nvarchar" MaxLength="256" />
+          <Property Name="maximum_lag" Type="int" />
+          <Property Name="is_continuous_copy" Type="bit" Nullable="false" />
+          <Property Name="is_target_role" Type="bit" Nullable="false" />
+          <Property Name="is_offline_secondary" Type="bit" Nullable="false" />
+          <Property Name="is_interlink_connected" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'master.sys.elastic_pool_resource_stats' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="elastic_pool_resource_stats">
+          <Key>
+            <PropertyRef Name="start_time" />
+            <PropertyRef Name="end_time" />
+            <PropertyRef Name="elastic_pool_name" />
+          </Key>
+          <Property Name="start_time" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="end_time" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="elastic_pool_name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="avg_cpu_percent" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="avg_data_io_percent" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="avg_log_write_percent" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="avg_storage_percent" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="max_worker_percent" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="max_session_percent" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="elastic_pool_dtu_limit" Type="int" />
+          <Property Name="elastic_pool_storage_limit_mb" Type="bigint" />
+          <Property Name="max_xtp_storage_percent" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="avg_login_rate_percent" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="avg_instance_cpu_percent" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="avg_instance_memory_percent" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="elastic_pool_cpu_limit" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="avg_allocated_storage_percent" Type="decimal" Precision="5" Scale="2" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'master.sys.event_history_log' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="event_history_log">
+          <Key>
+            <PropertyRef Name="source_sequence_id" />
+          </Key>
+          <Property Name="source_sequence_id" Type="bigint" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'master.sys.event_log' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="event_log">
+          <Key>
+            <PropertyRef Name="database_name" />
+            <PropertyRef Name="start_time" />
+            <PropertyRef Name="end_time" />
+            <PropertyRef Name="event_category" />
+            <PropertyRef Name="event_type" />
+            <PropertyRef Name="event_subtype" />
+            <PropertyRef Name="event_subtype_desc" />
+            <PropertyRef Name="severity" />
+            <PropertyRef Name="event_count" />
+            <PropertyRef Name="description" />
+          </Key>
+          <Property Name="database_name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="start_time" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="end_time" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="event_category" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="event_type" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="event_subtype" Type="int" Nullable="false" />
+          <Property Name="event_subtype_desc" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="severity" Type="int" Nullable="false" />
+          <Property Name="event_count" Type="int" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="additional_data" Type="xml" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'master.sys.firewall_rules' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="firewall_rules">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="start_ip_address" />
+            <PropertyRef Name="end_ip_address" />
+            <PropertyRef Name="create_date" />
+            <PropertyRef Name="modify_date" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="start_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="end_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="create_date" Type="datetime" Nullable="false" />
+          <Property Name="modify_date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'master.sys.geo_replication_links' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="geo_replication_links">
+          <Key>
+            <PropertyRef Name="link_guid" />
+          </Key>
+          <Property Name="database_id" Type="int" />
+          <Property Name="start_date" Type="datetimeoffset" Precision="7" />
+          <Property Name="modify_date" Type="datetimeoffset" Precision="7" />
+          <Property Name="link_guid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="partner_server" Type="nvarchar" MaxLength="128" />
+          <Property Name="partner_database" Type="nvarchar" MaxLength="128" />
+          <Property Name="replication_state" Type="tinyint" />
+          <Property Name="replication_state_desc" Type="nvarchar" MaxLength="256" />
+          <Property Name="role" Type="tinyint" />
+          <Property Name="role_desc" Type="nvarchar" MaxLength="256" />
+          <Property Name="secondary_allow_connections" Type="tinyint" />
+          <Property Name="secondary_allow_connections_desc" Type="nvarchar" MaxLength="256" />
+          <Property Name="percent_copied" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'master.sys.resource_stats' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="resource_stats">
+          <Key>
+            <PropertyRef Name="start_time" />
+            <PropertyRef Name="end_time" />
+            <PropertyRef Name="database_name" />
+            <PropertyRef Name="sku" />
+          </Key>
+          <Property Name="start_time" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="end_time" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="database_name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="sku" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="storage_in_megabytes" Type="float" />
+          <Property Name="avg_cpu_percent" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="avg_data_io_percent" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="avg_log_write_percent" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="max_worker_percent" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="max_session_percent" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="dtu_limit" Type="int" />
+          <Property Name="xtp_storage_percent" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="avg_login_rate_percent" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="avg_instance_cpu_percent" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="avg_instance_memory_percent" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="cpu_limit" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="allocated_storage_in_megabytes" Type="float" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'master.sys.resource_stats_ex' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="resource_stats_ex">
+          <Key>
+            <PropertyRef Name="start_time" />
+            <PropertyRef Name="end_time" />
+            <PropertyRef Name="database_name" />
+            <PropertyRef Name="low_key" />
+            <PropertyRef Name="sku" />
+            <PropertyRef Name="resource_capacity" />
+          </Key>
+          <Property Name="start_time" Type="datetime2" Precision="2" Nullable="false" />
+          <Property Name="end_time" Type="datetime2" Precision="2" Nullable="false" />
+          <Property Name="database_name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="low_key" Type="varbinary" MaxLength="256" Nullable="false" />
+          <Property Name="sku" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="resource_capacity" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="usage_in_seconds" Type="int" />
+          <Property Name="storage_in_megabytes" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="max_storage_in_megabytes" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'master.sys.resource_usage_ex' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="resource_usage_ex">
+          <Key>
+            <PropertyRef Name="time" />
+            <PropertyRef Name="database_name" />
+            <PropertyRef Name="low_key" />
+            <PropertyRef Name="sku" />
+            <PropertyRef Name="resource_capacity" />
+          </Key>
+          <Property Name="time" Type="datetime" Nullable="false" />
+          <Property Name="database_name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="low_key" Type="varbinary" MaxLength="256" Nullable="false" />
+          <Property Name="sku" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="resource_capacity" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="usage_in_seconds" Type="int" />
+          <Property Name="storage_in_megabytes" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="max_storage_in_megabytes" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'master.sys.sql_logins' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="sql_logins">
+          <Key>
+            <PropertyRef Name="principal_id" />
+            <PropertyRef Name="sid" />
+            <PropertyRef Name="create_date" />
+            <PropertyRef Name="modify_date" />
+            <PropertyRef Name="password_hash" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="sid" Type="varbinary" MaxLength="85" Nullable="false" />
+          <Property Name="type" Type="char" MaxLength="1" />
+          <Property Name="type_desc" Type="nvarchar" MaxLength="60" />
+          <Property Name="is_disabled" Type="bit" />
+          <Property Name="create_date" Type="datetime" Nullable="false" />
+          <Property Name="modify_date" Type="datetime" Nullable="false" />
+          <Property Name="default_database_name" Type="nvarchar" MaxLength="128" />
+          <Property Name="default_language_name" Type="nvarchar" MaxLength="128" />
+          <Property Name="credential_id" Type="int" />
+          <Property Name="is_policy_checked" Type="bit" />
+          <Property Name="is_expiration_checked" Type="bit" />
+          <Property Name="password_hash" Type="varbinary" MaxLength="512" Nullable="false" />
+        </EntityType>
+        <Function Name="fn_sysdac_get_currentusername" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar" />
+        <Function Name="fn_sysdac_get_username" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+          <Parameter Name="user_sid" Type="varbinary" Mode="In" />
+        </Function>
+        <Function Name="fn_sysdac_is_currentuser_sa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="fn_sysdac_is_dac_creator" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="fn_sysdac_is_login_creator" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_sysdac_add_history_entry" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="sequence_id" Type="int" Mode="In" />
+          <Parameter Name="instance_id" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="action_type" Type="tinyint" Mode="In" />
+          <Parameter Name="action_status" Type="tinyint" Mode="In" />
+          <Parameter Name="dac_object_type" Type="tinyint" Mode="In" />
+          <Parameter Name="required" Type="bit" Mode="In" />
+          <Parameter Name="dac_object_name_pretran" Type="nvarchar" Mode="In" />
+          <Parameter Name="dac_object_name_posttran" Type="nvarchar" Mode="In" />
+          <Parameter Name="sqlscript" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="payload" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="comments" Type="varchar(max)" Mode="In" />
+          <Parameter Name="error_string" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="action_id" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="sp_sysdac_add_instance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="type_name" Type="nvarchar" Mode="In" />
+          <Parameter Name="instance_id" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="instance_name" Type="nvarchar" Mode="In" />
+          <Parameter Name="type_version" Type="nvarchar" Mode="In" />
+          <Parameter Name="description" Type="nvarchar" Mode="In" />
+          <Parameter Name="type_stream" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_sysdac_delete_instance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="instance_id" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="sp_sysdac_drop_database" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="database_name" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_sysdac_ensure_dac_creator" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_sysdac_rename_database" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="database_name" Type="nvarchar" Mode="In" />
+          <Parameter Name="new_name" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_sysdac_resolve_pending_entry" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="action_id" Type="int" Mode="In" />
+          <Parameter Name="sequence_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_sysdac_rollback_all_pending_objects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="return_scripts" Type="tinyint" Mode="In" />
+        </Function>
+        <Function Name="sp_sysdac_rollback_committed_step" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="action_id" Type="int" Mode="In" />
+          <Parameter Name="sequence_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_sysdac_rollback_pending_object" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="action_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_sysdac_setreadonly_database" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="database_name" Type="nvarchar" Mode="In" />
+          <Parameter Name="readonly" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="sp_sysdac_update_history_entry" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="action_id" Type="int" Mode="In" />
+          <Parameter Name="instance_id" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="action_type" Type="tinyint" Mode="In" />
+          <Parameter Name="dac_object_type" Type="tinyint" Mode="In" />
+          <Parameter Name="action_status" Type="tinyint" Mode="In" />
+          <Parameter Name="dac_object_name_pretran" Type="nvarchar" Mode="In" />
+          <Parameter Name="dac_object_name_posttran" Type="nvarchar" Mode="In" />
+          <Parameter Name="sqlscript" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="error_string" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_sysdac_upgrade_instance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="source_instance_id" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="instance_id" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="instance_name" Type="nvarchar" Mode="In" />
+          <Parameter Name="database_name" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_add_database_events" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="sys" />
+        <Function Name="sp_cleanup_database_event_update_history_table" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="sys">
+          <Parameter Name="expire_history_after_hours" Type="int" Mode="In" />
+          <Parameter Name="num_elem_to_del" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_cleanup_database_events" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="sys">
+          <Parameter Name="expire_after_days" Type="int" Mode="In" />
+          <Parameter Name="expire_after_events" Type="int" Mode="In" />
+          <Parameter Name="expire_history_after_hours" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_cleanup_database_events_table" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="sys">
+          <Parameter Name="expire_after_days" Type="int" Mode="In" />
+          <Parameter Name="expire_after_events" Type="int" Mode="In" />
+          <Parameter Name="num_elem_to_del" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="masterModelStoreContainer">
+          <EntitySet Name="cargos" EntityType="Self.cargos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="faltas" EntityType="Self.faltas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="funcionarios" EntityType="Self.funcionarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="holerite" EntityType="Self.holerite" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pgm_horas" EntityType="Self.pgm_horas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdac_history_internal" EntityType="Self.sysdac_history_internal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdac_instances_internal" EntityType="Self.sysdac_instances_internal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="logins_Adm" EntityType="Self.logins_Adm" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [logins_Adm].[usuario] AS [usuario], 
+    [logins_Adm].[senha] AS [senha]
+    FROM [dbo].[logins_Adm] AS [logins_Adm]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="sysdac_instances" EntityType="Self.sysdac_instances" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [sysdac_instances].[instance_id] AS [instance_id], 
+    [sysdac_instances].[instance_name] AS [instance_name], 
+    [sysdac_instances].[type_name] AS [type_name], 
+    [sysdac_instances].[type_version] AS [type_version], 
+    [sysdac_instances].[description] AS [description], 
+    [sysdac_instances].[type_stream] AS [type_stream], 
+    [sysdac_instances].[date_created] AS [date_created], 
+    [sysdac_instances].[created_by] AS [created_by], 
+    [sysdac_instances].[database_name] AS [database_name]
+    FROM [dbo].[sysdac_instances] AS [sysdac_instances]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="bandwidth_usage" EntityType="Self.bandwidth_usage" store:Type="Views" store:Schema="sys">
+            <DefiningQuery>SELECT 
+    [bandwidth_usage].[time] AS [time], 
+    [bandwidth_usage].[database_name] AS [database_name], 
+    [bandwidth_usage].[direction] AS [direction], 
+    [bandwidth_usage].[class] AS [class], 
+    [bandwidth_usage].[time_period] AS [time_period], 
+    [bandwidth_usage].[quantity] AS [quantity]
+    FROM [sys].[bandwidth_usage] AS [bandwidth_usage]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="billing" EntityType="Self.billing" store:Type="Views" store:Schema="sys">
+            <DefiningQuery>SELECT 
+    [billing].[time] AS [time], 
+    [billing].[type] AS [type], 
+    [billing].[database_name] AS [database_name], 
+    [billing].[data1] AS [data1], 
+    [billing].[data2] AS [data2], 
+    [billing].[data3] AS [data3], 
+    [billing].[data4] AS [data4], 
+    [billing].[quantity] AS [quantity], 
+    [billing].[billed] AS [billed], 
+    [billing].[event_id] AS [event_id]
+    FROM [sys].[billing] AS [billing]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="database_connection_stats" EntityType="Self.database_connection_stats" store:Type="Views" store:Schema="sys">
+            <DefiningQuery>SELECT 
+    [database_connection_stats].[database_name] AS [database_name], 
+    [database_connection_stats].[start_time] AS [start_time], 
+    [database_connection_stats].[end_time] AS [end_time], 
+    [database_connection_stats].[success_count] AS [success_count], 
+    [database_connection_stats].[total_failure_count] AS [total_failure_count], 
+    [database_connection_stats].[connection_failure_count] AS [connection_failure_count], 
+    [database_connection_stats].[terminated_connection_count] AS [terminated_connection_count], 
+    [database_connection_stats].[throttled_connection_count] AS [throttled_connection_count]
+    FROM [sys].[database_connection_stats] AS [database_connection_stats]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="database_error_stats" EntityType="Self.database_error_stats" store:Type="Views" store:Schema="sys">
+            <DefiningQuery>SELECT 
+    [database_error_stats].[database_name] AS [database_name], 
+    [database_error_stats].[start_time] AS [start_time], 
+    [database_error_stats].[end_time] AS [end_time], 
+    [database_error_stats].[error_number] AS [error_number], 
+    [database_error_stats].[error_count] AS [error_count]
+    FROM [sys].[database_error_stats] AS [database_error_stats]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" store:Type="Views" store:Schema="sys">
+            <DefiningQuery>SELECT 
+    [database_firewall_rules].[id] AS [id], 
+    [database_firewall_rules].[name] AS [name], 
+    [database_firewall_rules].[start_ip_address] AS [start_ip_address], 
+    [database_firewall_rules].[end_ip_address] AS [end_ip_address], 
+    [database_firewall_rules].[create_date] AS [create_date], 
+    [database_firewall_rules].[modify_date] AS [modify_date]
+    FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="database_usage" EntityType="Self.database_usage" store:Type="Views" store:Schema="sys">
+            <DefiningQuery>SELECT 
+    [database_usage].[time] AS [time], 
+    [database_usage].[sku] AS [sku], 
+    [database_usage].[quantity] AS [quantity]
+    FROM [sys].[database_usage] AS [database_usage]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="dm_database_copies" EntityType="Self.dm_database_copies" store:Type="Views" store:Schema="sys">
+            <DefiningQuery>SELECT 
+    [dm_database_copies].[database_id] AS [database_id], 
+    [dm_database_copies].[start_date] AS [start_date], 
+    [dm_database_copies].[modify_date] AS [modify_date], 
+    [dm_database_copies].[percent_complete] AS [percent_complete], 
+    [dm_database_copies].[error_code] AS [error_code], 
+    [dm_database_copies].[error_desc] AS [error_desc], 
+    [dm_database_copies].[error_severity] AS [error_severity], 
+    [dm_database_copies].[error_state] AS [error_state], 
+    [dm_database_copies].[copy_guid] AS [copy_guid], 
+    [dm_database_copies].[partner_server] AS [partner_server], 
+    [dm_database_copies].[partner_database] AS [partner_database], 
+    [dm_database_copies].[replication_state] AS [replication_state], 
+    [dm_database_copies].[replication_state_desc] AS [replication_state_desc], 
+    [dm_database_copies].[maximum_lag] AS [maximum_lag], 
+    [dm_database_copies].[is_continuous_copy] AS [is_continuous_copy], 
+    [dm_database_copies].[is_target_role] AS [is_target_role], 
+    [dm_database_copies].[is_offline_secondary] AS [is_offline_secondary], 
+    [dm_database_copies].[is_interlink_connected] AS [is_interlink_connected]
+    FROM [sys].[dm_database_copies] AS [dm_database_copies]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="elastic_pool_resource_stats" EntityType="Self.elastic_pool_resource_stats" store:Type="Views" store:Schema="sys">
+            <DefiningQuery>SELECT 
+    [elastic_pool_resource_stats].[start_time] AS [start_time], 
+    [elastic_pool_resource_stats].[end_time] AS [end_time], 
+    [elastic_pool_resource_stats].[elastic_pool_name] AS [elastic_pool_name], 
+    [elastic_pool_resource_stats].[avg_cpu_percent] AS [avg_cpu_percent], 
+    [elastic_pool_resource_stats].[avg_data_io_percent] AS [avg_data_io_percent], 
+    [elastic_pool_resource_stats].[avg_log_write_percent] AS [avg_log_write_percent], 
+    [elastic_pool_resource_stats].[avg_storage_percent] AS [avg_storage_percent], 
+    [elastic_pool_resource_stats].[max_worker_percent] AS [max_worker_percent], 
+    [elastic_pool_resource_stats].[max_session_percent] AS [max_session_percent], 
+    [elastic_pool_resource_stats].[elastic_pool_dtu_limit] AS [elastic_pool_dtu_limit], 
+    [elastic_pool_resource_stats].[elastic_pool_storage_limit_mb] AS [elastic_pool_storage_limit_mb], 
+    [elastic_pool_resource_stats].[max_xtp_storage_percent] AS [max_xtp_storage_percent], 
+    [elastic_pool_resource_stats].[avg_login_rate_percent] AS [avg_login_rate_percent], 
+    [elastic_pool_resource_stats].[avg_instance_cpu_percent] AS [avg_instance_cpu_percent], 
+    [elastic_pool_resource_stats].[avg_instance_memory_percent] AS [avg_instance_memory_percent], 
+    [elastic_pool_resource_stats].[elastic_pool_cpu_limit] AS [elastic_pool_cpu_limit], 
+    [elastic_pool_resource_stats].[avg_allocated_storage_percent] AS [avg_allocated_storage_percent]
+    FROM [sys].[elastic_pool_resource_stats] AS [elastic_pool_resource_stats]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="event_history_log" EntityType="Self.event_history_log" store:Type="Views" store:Schema="sys">
+            <DefiningQuery>SELECT 
+    [event_history_log].[source_sequence_id] AS [source_sequence_id]
+    FROM [sys].[event_history_log] AS [event_history_log]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="event_log" EntityType="Self.event_log" store:Type="Views" store:Schema="sys">
+            <DefiningQuery>SELECT 
+    [event_log].[database_name] AS [database_name], 
+    [event_log].[start_time] AS [start_time], 
+    [event_log].[end_time] AS [end_time], 
+    [event_log].[event_category] AS [event_category], 
+    [event_log].[event_type] AS [event_type], 
+    [event_log].[event_subtype] AS [event_subtype], 
+    [event_log].[event_subtype_desc] AS [event_subtype_desc], 
+    [event_log].[severity] AS [severity], 
+    [event_log].[event_count] AS [event_count], 
+    [event_log].[description] AS [description], 
+    [event_log].[additional_data] AS [additional_data]
+    FROM [sys].[event_log] AS [event_log]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="firewall_rules" EntityType="Self.firewall_rules" store:Type="Views" store:Schema="sys">
+            <DefiningQuery>SELECT 
+    [firewall_rules].[id] AS [id], 
+    [firewall_rules].[name] AS [name], 
+    [firewall_rules].[start_ip_address] AS [start_ip_address], 
+    [firewall_rules].[end_ip_address] AS [end_ip_address], 
+    [firewall_rules].[create_date] AS [create_date], 
+    [firewall_rules].[modify_date] AS [modify_date]
+    FROM [sys].[firewall_rules] AS [firewall_rules]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="geo_replication_links" EntityType="Self.geo_replication_links" store:Type="Views" store:Schema="sys">
+            <DefiningQuery>SELECT 
+    [geo_replication_links].[database_id] AS [database_id], 
+    [geo_replication_links].[start_date] AS [start_date], 
+    [geo_replication_links].[modify_date] AS [modify_date], 
+    [geo_replication_links].[link_guid] AS [link_guid], 
+    [geo_replication_links].[partner_server] AS [partner_server], 
+    [geo_replication_links].[partner_database] AS [partner_database], 
+    [geo_replication_links].[replication_state] AS [replication_state], 
+    [geo_replication_links].[replication_state_desc] AS [replication_state_desc], 
+    [geo_replication_links].[role] AS [role], 
+    [geo_replication_links].[role_desc] AS [role_desc], 
+    [geo_replication_links].[secondary_allow_connections] AS [secondary_allow_connections], 
+    [geo_replication_links].[secondary_allow_connections_desc] AS [secondary_allow_connections_desc], 
+    [geo_replication_links].[percent_copied] AS [percent_copied]
+    FROM [sys].[geo_replication_links] AS [geo_replication_links]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="resource_stats" EntityType="Self.resource_stats" store:Type="Views" store:Schema="sys">
+            <DefiningQuery>SELECT 
+    [resource_stats].[start_time] AS [start_time], 
+    [resource_stats].[end_time] AS [end_time], 
+    [resource_stats].[database_name] AS [database_name], 
+    [resource_stats].[sku] AS [sku], 
+    [resource_stats].[storage_in_megabytes] AS [storage_in_megabytes], 
+    [resource_stats].[avg_cpu_percent] AS [avg_cpu_percent], 
+    [resource_stats].[avg_data_io_percent] AS [avg_data_io_percent], 
+    [resource_stats].[avg_log_write_percent] AS [avg_log_write_percent], 
+    [resource_stats].[max_worker_percent] AS [max_worker_percent], 
+    [resource_stats].[max_session_percent] AS [max_session_percent], 
+    [resource_stats].[dtu_limit] AS [dtu_limit], 
+    [resource_stats].[xtp_storage_percent] AS [xtp_storage_percent], 
+    [resource_stats].[avg_login_rate_percent] AS [avg_login_rate_percent], 
+    [resource_stats].[avg_instance_cpu_percent] AS [avg_instance_cpu_percent], 
+    [resource_stats].[avg_instance_memory_percent] AS [avg_instance_memory_percent], 
+    [resource_stats].[cpu_limit] AS [cpu_limit], 
+    [resource_stats].[allocated_storage_in_megabytes] AS [allocated_storage_in_megabytes]
+    FROM [sys].[resource_stats] AS [resource_stats]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="resource_stats_ex" EntityType="Self.resource_stats_ex" store:Type="Views" store:Schema="sys">
+            <DefiningQuery>SELECT 
+    [resource_stats_ex].[start_time] AS [start_time], 
+    [resource_stats_ex].[end_time] AS [end_time], 
+    [resource_stats_ex].[database_name] AS [database_name], 
+    [resource_stats_ex].[low_key] AS [low_key], 
+    [resource_stats_ex].[sku] AS [sku], 
+    [resource_stats_ex].[resource_capacity] AS [resource_capacity], 
+    [resource_stats_ex].[usage_in_seconds] AS [usage_in_seconds], 
+    [resource_stats_ex].[storage_in_megabytes] AS [storage_in_megabytes], 
+    [resource_stats_ex].[max_storage_in_megabytes] AS [max_storage_in_megabytes]
+    FROM [sys].[resource_stats_ex] AS [resource_stats_ex]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="resource_usage_ex" EntityType="Self.resource_usage_ex" store:Type="Views" store:Schema="sys">
+            <DefiningQuery>SELECT 
+    [resource_usage_ex].[time] AS [time], 
+    [resource_usage_ex].[database_name] AS [database_name], 
+    [resource_usage_ex].[low_key] AS [low_key], 
+    [resource_usage_ex].[sku] AS [sku], 
+    [resource_usage_ex].[resource_capacity] AS [resource_capacity], 
+    [resource_usage_ex].[usage_in_seconds] AS [usage_in_seconds], 
+    [resource_usage_ex].[storage_in_megabytes] AS [storage_in_megabytes], 
+    [resource_usage_ex].[max_storage_in_megabytes] AS [max_storage_in_megabytes]
+    FROM [sys].[resource_usage_ex] AS [resource_usage_ex]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="sql_logins" EntityType="Self.sql_logins" store:Type="Views" store:Schema="sys">
+            <DefiningQuery>SELECT 
+    [sql_logins].[name] AS [name], 
+    [sql_logins].[principal_id] AS [principal_id], 
+    [sql_logins].[sid] AS [sid], 
+    [sql_logins].[type] AS [type], 
+    [sql_logins].[type_desc] AS [type_desc], 
+    [sql_logins].[is_disabled] AS [is_disabled], 
+    [sql_logins].[create_date] AS [create_date], 
+    [sql_logins].[modify_date] AS [modify_date], 
+    [sql_logins].[default_database_name] AS [default_database_name], 
+    [sql_logins].[default_language_name] AS [default_language_name], 
+    [sql_logins].[credential_id] AS [credential_id], 
+    [sql_logins].[is_policy_checked] AS [is_policy_checked], 
+    [sql_logins].[is_expiration_checked] AS [is_expiration_checked], 
+    [sql_logins].[password_hash] AS [password_hash]
+    FROM [sys].[sql_logins] AS [sql_logins]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="masterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="cargos">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome_cargo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="salario" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="nv_escolaridade" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nv_exp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="departamento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="carga_horaria" Type="Int32" />
+        </EntityType>
+        <EntityType Name="faltas">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="funcionarios_ID" Type="Int32" />
+          <Property Name="data_falta" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="motivo_falta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="justificativa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="observacoes" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="duracao_falta" Type="Int32" />
+          <Property Name="tipo_falta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="historico_faltas" Type="Int32" />
+        </EntityType>
+        <EntityType Name="funcionarios">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cpf" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="rg" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tel" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="gen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dt_ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nac" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="endereco" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuario" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="senha" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id_cargo" Type="Int32" />
+        </EntityType>
+        <EntityType Name="holerite">
+          <Key>
+            <PropertyRef Name="data_emissao" />
+          </Key>
+          <Property Name="data_emissao" Type="Int32" Nullable="false" />
+          <Property Name="periodo_pagamento" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="total_salario" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="total_desconto" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="total_liquido" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="id_funcionario" Type="Int32" />
+          <Property Name="beneficios" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="descontos" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="status_pagamento" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="decimo_terceiro" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="salario_bruto" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="mes_ref" Type="Int32" />
+          <Property Name="ano_ref" Type="Int32" />
+          <Property Name="inss" Type="Decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="pgm_horas">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Data_registro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Hora_entrada" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Hora_saida" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Hora_inicio_intervalo" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Hora_fim_intervalo" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Horas_trabalhadas" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Tipo_reg" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="sysdac_history_internal">
+          <Key>
+            <PropertyRef Name="action_id" />
+            <PropertyRef Name="sequence_id" />
+          </Key>
+          <Property Name="action_id" Type="Int32" Nullable="false" />
+          <Property Name="sequence_id" Type="Int32" Nullable="false" />
+          <Property Name="instance_id" Type="Guid" Nullable="false" />
+          <Property Name="action_type" Type="Byte" Nullable="false" />
+          <Property Name="action_type_name" Type="String" MaxLength="19" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="dac_object_type" Type="Byte" Nullable="false" />
+          <Property Name="dac_object_type_name" Type="String" MaxLength="8" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="action_status" Type="Byte" Nullable="false" />
+          <Property Name="action_status_name" Type="String" MaxLength="11" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="required" Type="Boolean" />
+          <Property Name="dac_object_name_pretran" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="dac_object_name_posttran" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sqlscript" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="payload" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="error_string" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="created_by" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="date_created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="date_modified" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="sysdac_instances_internal">
+          <Key>
+            <PropertyRef Name="instance_id" />
+          </Key>
+          <Property Name="instance_id" Type="Guid" Nullable="false" />
+          <Property Name="instance_name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="type_name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="type_version" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="type_stream" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="date_created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="created_by" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="logins_Adm">
+          <Key>
+            <PropertyRef Name="usuario" />
+            <PropertyRef Name="senha" />
+          </Key>
+          <Property Name="usuario" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="senha" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdac_instances">
+          <Key>
+            <PropertyRef Name="instance_name" />
+            <PropertyRef Name="type_name" />
+            <PropertyRef Name="type_version" />
+            <PropertyRef Name="date_created" />
+            <PropertyRef Name="created_by" />
+            <PropertyRef Name="database_name" />
+          </Key>
+          <Property Name="instance_id" Type="Guid" />
+          <Property Name="instance_name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="type_name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="type_version" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="type_stream" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="date_created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="created_by" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="database_name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="bandwidth_usage">
+          <Key>
+            <PropertyRef Name="time" />
+            <PropertyRef Name="database_name" />
+            <PropertyRef Name="direction" />
+            <PropertyRef Name="class" />
+            <PropertyRef Name="time_period" />
+          </Key>
+          <Property Name="time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="database_name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="direction" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="class" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="time_period" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="quantity" Type="Decimal" Precision="38" Scale="6" />
+        </EntityType>
+        <EntityType Name="billing">
+          <Key>
+            <PropertyRef Name="time" />
+            <PropertyRef Name="type" />
+            <PropertyRef Name="database_name" />
+            <PropertyRef Name="data1" />
+            <PropertyRef Name="data2" />
+            <PropertyRef Name="data3" />
+            <PropertyRef Name="data4" />
+            <PropertyRef Name="billed" />
+            <PropertyRef Name="event_id" />
+          </Key>
+          <Property Name="time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="database_name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="data1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="data2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="data3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="data4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="quantity" Type="Decimal" Precision="38" Scale="6" />
+          <Property Name="billed" Type="Boolean" Nullable="false" />
+          <Property Name="event_id" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="database_connection_stats">
+          <Key>
+            <PropertyRef Name="database_name" />
+            <PropertyRef Name="start_time" />
+            <PropertyRef Name="end_time" />
+            <PropertyRef Name="success_count" />
+            <PropertyRef Name="total_failure_count" />
+            <PropertyRef Name="connection_failure_count" />
+            <PropertyRef Name="terminated_connection_count" />
+            <PropertyRef Name="throttled_connection_count" />
+          </Key>
+          <Property Name="database_name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="start_time" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="end_time" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="success_count" Type="Int32" Nullable="false" />
+          <Property Name="total_failure_count" Type="Int32" Nullable="false" />
+          <Property Name="connection_failure_count" Type="Int32" Nullable="false" />
+          <Property Name="terminated_connection_count" Type="Int32" Nullable="false" />
+          <Property Name="throttled_connection_count" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="database_error_stats">
+          <Key>
+            <PropertyRef Name="database_name" />
+            <PropertyRef Name="start_time" />
+            <PropertyRef Name="end_time" />
+            <PropertyRef Name="error_number" />
+            <PropertyRef Name="error_count" />
+          </Key>
+          <Property Name="database_name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="start_time" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="end_time" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="error_number" Type="Int32" Nullable="false" />
+          <Property Name="error_count" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="database_firewall_rules">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="start_ip_address" />
+            <PropertyRef Name="end_ip_address" />
+            <PropertyRef Name="create_date" />
+            <PropertyRef Name="modify_date" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="start_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="end_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modify_date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="database_usage">
+          <Key>
+            <PropertyRef Name="sku" />
+          </Key>
+          <Property Name="time" Type="DateTime" Precision="3" />
+          <Property Name="sku" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="quantity" Type="Decimal" Precision="38" Scale="6" />
+        </EntityType>
+        <EntityType Name="dm_database_copies">
+          <Key>
+            <PropertyRef Name="copy_guid" />
+            <PropertyRef Name="is_continuous_copy" />
+            <PropertyRef Name="is_target_role" />
+            <PropertyRef Name="is_offline_secondary" />
+          </Key>
+          <Property Name="database_id" Type="Int32" />
+          <Property Name="start_date" Type="DateTimeOffset" Precision="7" />
+          <Property Name="modify_date" Type="DateTimeOffset" Precision="7" />
+          <Property Name="percent_complete" Type="Single" />
+          <Property Name="error_code" Type="Int32" />
+          <Property Name="error_desc" Type="String" MaxLength="2048" FixedLength="false" Unicode="true" />
+          <Property Name="error_severity" Type="Int32" />
+          <Property Name="error_state" Type="Int32" />
+          <Property Name="copy_guid" Type="Guid" Nullable="false" />
+          <Property Name="partner_server" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="partner_database" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="replication_state" Type="Byte" />
+          <Property Name="replication_state_desc" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="maximum_lag" Type="Int32" />
+          <Property Name="is_continuous_copy" Type="Boolean" Nullable="false" />
+          <Property Name="is_target_role" Type="Boolean" Nullable="false" />
+          <Property Name="is_offline_secondary" Type="Boolean" Nullable="false" />
+          <Property Name="is_interlink_connected" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="elastic_pool_resource_stats">
+          <Key>
+            <PropertyRef Name="start_time" />
+            <PropertyRef Name="end_time" />
+            <PropertyRef Name="elastic_pool_name" />
+          </Key>
+          <Property Name="start_time" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="end_time" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="elastic_pool_name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="avg_cpu_percent" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="avg_data_io_percent" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="avg_log_write_percent" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="avg_storage_percent" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="max_worker_percent" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="max_session_percent" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="elastic_pool_dtu_limit" Type="Int32" />
+          <Property Name="elastic_pool_storage_limit_mb" Type="Int64" />
+          <Property Name="max_xtp_storage_percent" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="avg_login_rate_percent" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="avg_instance_cpu_percent" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="avg_instance_memory_percent" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="elastic_pool_cpu_limit" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="avg_allocated_storage_percent" Type="Decimal" Precision="5" Scale="2" />
+        </EntityType>
+        <EntityType Name="event_history_log">
+          <Key>
+            <PropertyRef Name="source_sequence_id" />
+          </Key>
+          <Property Name="source_sequence_id" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="event_log">
+          <Key>
+            <PropertyRef Name="database_name" />
+            <PropertyRef Name="start_time" />
+            <PropertyRef Name="end_time" />
+            <PropertyRef Name="event_category" />
+            <PropertyRef Name="event_type" />
+            <PropertyRef Name="event_subtype" />
+            <PropertyRef Name="event_subtype_desc" />
+            <PropertyRef Name="severity" />
+            <PropertyRef Name="event_count" />
+            <PropertyRef Name="description" />
+          </Key>
+          <Property Name="database_name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="start_time" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="end_time" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="event_category" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="event_type" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="event_subtype" Type="Int32" Nullable="false" />
+          <Property Name="event_subtype_desc" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="severity" Type="Int32" Nullable="false" />
+          <Property Name="event_count" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="additional_data" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="firewall_rules">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="start_ip_address" />
+            <PropertyRef Name="end_ip_address" />
+            <PropertyRef Name="create_date" />
+            <PropertyRef Name="modify_date" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="start_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="end_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modify_date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="geo_replication_links">
+          <Key>
+            <PropertyRef Name="link_guid" />
+          </Key>
+          <Property Name="database_id" Type="Int32" />
+          <Property Name="start_date" Type="DateTimeOffset" Precision="7" />
+          <Property Name="modify_date" Type="DateTimeOffset" Precision="7" />
+          <Property Name="link_guid" Type="Guid" Nullable="false" />
+          <Property Name="partner_server" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="partner_database" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="replication_state" Type="Byte" />
+          <Property Name="replication_state_desc" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="role" Type="Byte" />
+          <Property Name="role_desc" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="secondary_allow_connections" Type="Byte" />
+          <Property Name="secondary_allow_connections_desc" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="percent_copied" Type="Int32" />
+        </EntityType>
+        <EntityType Name="resource_stats">
+          <Key>
+            <PropertyRef Name="start_time" />
+            <PropertyRef Name="end_time" />
+            <PropertyRef Name="database_name" />
+            <PropertyRef Name="sku" />
+          </Key>
+          <Property Name="start_time" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="end_time" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="database_name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sku" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="storage_in_megabytes" Type="Double" />
+          <Property Name="avg_cpu_percent" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="avg_data_io_percent" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="avg_log_write_percent" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="max_worker_percent" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="max_session_percent" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="dtu_limit" Type="Int32" />
+          <Property Name="xtp_storage_percent" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="avg_login_rate_percent" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="avg_instance_cpu_percent" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="avg_instance_memory_percent" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="cpu_limit" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="allocated_storage_in_megabytes" Type="Double" />
+        </EntityType>
+        <EntityType Name="resource_stats_ex">
+          <Key>
+            <PropertyRef Name="start_time" />
+            <PropertyRef Name="end_time" />
+            <PropertyRef Name="database_name" />
+            <PropertyRef Name="low_key" />
+            <PropertyRef Name="sku" />
+            <PropertyRef Name="resource_capacity" />
+          </Key>
+          <Property Name="start_time" Type="DateTime" Nullable="false" Precision="2" />
+          <Property Name="end_time" Type="DateTime" Nullable="false" Precision="2" />
+          <Property Name="database_name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="low_key" Type="Binary" MaxLength="256" FixedLength="false" Nullable="false" />
+          <Property Name="sku" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="resource_capacity" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="usage_in_seconds" Type="Int32" />
+          <Property Name="storage_in_megabytes" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="max_storage_in_megabytes" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="resource_usage_ex">
+          <Key>
+            <PropertyRef Name="time" />
+            <PropertyRef Name="database_name" />
+            <PropertyRef Name="low_key" />
+            <PropertyRef Name="sku" />
+            <PropertyRef Name="resource_capacity" />
+          </Key>
+          <Property Name="time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="database_name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="low_key" Type="Binary" MaxLength="256" FixedLength="false" Nullable="false" />
+          <Property Name="sku" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="resource_capacity" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="usage_in_seconds" Type="Int32" />
+          <Property Name="storage_in_megabytes" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="max_storage_in_megabytes" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="sql_logins">
+          <Key>
+            <PropertyRef Name="principal_id" />
+            <PropertyRef Name="sid" />
+            <PropertyRef Name="create_date" />
+            <PropertyRef Name="modify_date" />
+            <PropertyRef Name="password_hash" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="sid" Type="Binary" MaxLength="85" FixedLength="false" Nullable="false" />
+          <Property Name="type" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="type_desc" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="is_disabled" Type="Boolean" />
+          <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modify_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="default_database_name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="default_language_name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="credential_id" Type="Int32" />
+          <Property Name="is_policy_checked" Type="Boolean" />
+          <Property Name="is_expiration_checked" Type="Boolean" />
+          <Property Name="password_hash" Type="Binary" MaxLength="512" FixedLength="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="masterEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="cargos" EntityType="Self.cargos" />
+          <EntitySet Name="faltas" EntityType="Self.faltas" />
+          <EntitySet Name="funcionarios" EntityType="Self.funcionarios" />
+          <EntitySet Name="holerite" EntityType="Self.holerite" />
+          <EntitySet Name="pgm_horas" EntityType="Self.pgm_horas" />
+          <EntitySet Name="sysdac_history_internal" EntityType="Self.sysdac_history_internal" />
+          <EntitySet Name="sysdac_instances_internal" EntityType="Self.sysdac_instances_internal" />
+          <EntitySet Name="logins_Adm" EntityType="Self.logins_Adm" />
+          <EntitySet Name="sysdac_instances" EntityType="Self.sysdac_instances" />
+          <EntitySet Name="bandwidth_usage" EntityType="Self.bandwidth_usage" />
+          <EntitySet Name="billing" EntityType="Self.billing" />
+          <EntitySet Name="database_connection_stats" EntityType="Self.database_connection_stats" />
+          <EntitySet Name="database_error_stats" EntityType="Self.database_error_stats" />
+          <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" />
+          <EntitySet Name="database_usage" EntityType="Self.database_usage" />
+          <EntitySet Name="dm_database_copies" EntityType="Self.dm_database_copies" />
+          <EntitySet Name="elastic_pool_resource_stats" EntityType="Self.elastic_pool_resource_stats" />
+          <EntitySet Name="event_history_log" EntityType="Self.event_history_log" />
+          <EntitySet Name="event_log" EntityType="Self.event_log" />
+          <EntitySet Name="firewall_rules" EntityType="Self.firewall_rules" />
+          <EntitySet Name="geo_replication_links" EntityType="Self.geo_replication_links" />
+          <EntitySet Name="resource_stats" EntityType="Self.resource_stats" />
+          <EntitySet Name="resource_stats_ex" EntityType="Self.resource_stats_ex" />
+          <EntitySet Name="resource_usage_ex" EntityType="Self.resource_usage_ex" />
+          <EntitySet Name="sql_logins" EntityType="Self.sql_logins" />
+          <FunctionImport Name="sp_sysdac_add_history_entry">
+            <Parameter Name="sequence_id" Mode="In" Type="Int32" />
+            <Parameter Name="instance_id" Mode="In" Type="Guid" />
+            <Parameter Name="action_type" Mode="In" Type="Byte" />
+            <Parameter Name="action_status" Mode="In" Type="Byte" />
+            <Parameter Name="dac_object_type" Mode="In" Type="Byte" />
+            <Parameter Name="required" Mode="In" Type="Boolean" />
+            <Parameter Name="dac_object_name_pretran" Mode="In" Type="String" />
+            <Parameter Name="dac_object_name_posttran" Mode="In" Type="String" />
+            <Parameter Name="sqlscript" Mode="In" Type="String" />
+            <Parameter Name="payload" Mode="In" Type="Binary" />
+            <Parameter Name="comments" Mode="In" Type="String" />
+            <Parameter Name="error_string" Mode="In" Type="String" />
+            <Parameter Name="action_id" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_sysdac_add_instance">
+            <Parameter Name="type_name" Mode="In" Type="String" />
+            <Parameter Name="instance_id" Mode="In" Type="Guid" />
+            <Parameter Name="instance_name" Mode="In" Type="String" />
+            <Parameter Name="type_version" Mode="In" Type="String" />
+            <Parameter Name="description" Mode="In" Type="String" />
+            <Parameter Name="type_stream" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_sysdac_delete_instance">
+            <Parameter Name="instance_id" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="sp_sysdac_drop_database" ReturnType="Collection(masterModel.sp_sysdac_drop_database_Result)">
+            <Parameter Name="database_name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_sysdac_ensure_dac_creator" />
+          <FunctionImport Name="sp_sysdac_rename_database">
+            <Parameter Name="database_name" Mode="In" Type="String" />
+            <Parameter Name="new_name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_sysdac_resolve_pending_entry">
+            <Parameter Name="action_id" Mode="In" Type="Int32" />
+            <Parameter Name="sequence_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_sysdac_rollback_all_pending_objects">
+            <Parameter Name="return_scripts" Mode="In" Type="Byte" />
+          </FunctionImport>
+          <FunctionImport Name="sp_sysdac_rollback_committed_step" ReturnType="Collection(masterModel.sp_sysdac_rollback_committed_step_Result)">
+            <Parameter Name="action_id" Mode="In" Type="Int32" />
+            <Parameter Name="sequence_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_sysdac_rollback_pending_object" ReturnType="Collection(masterModel.sp_sysdac_rollback_pending_object_Result)">
+            <Parameter Name="action_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_sysdac_setreadonly_database">
+            <Parameter Name="database_name" Mode="In" Type="String" />
+            <Parameter Name="readonly" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="sp_sysdac_update_history_entry">
+            <Parameter Name="action_id" Mode="In" Type="Int32" />
+            <Parameter Name="instance_id" Mode="In" Type="Guid" />
+            <Parameter Name="action_type" Mode="In" Type="Byte" />
+            <Parameter Name="dac_object_type" Mode="In" Type="Byte" />
+            <Parameter Name="action_status" Mode="In" Type="Byte" />
+            <Parameter Name="dac_object_name_pretran" Mode="In" Type="String" />
+            <Parameter Name="dac_object_name_posttran" Mode="In" Type="String" />
+            <Parameter Name="sqlscript" Mode="In" Type="String" />
+            <Parameter Name="error_string" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_sysdac_upgrade_instance">
+            <Parameter Name="source_instance_id" Mode="In" Type="Guid" />
+            <Parameter Name="instance_id" Mode="In" Type="Guid" />
+            <Parameter Name="instance_name" Mode="In" Type="String" />
+            <Parameter Name="database_name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_add_database_events" />
+          <FunctionImport Name="sp_cleanup_database_event_update_history_table">
+            <Parameter Name="expire_history_after_hours" Mode="In" Type="Int32" />
+            <Parameter Name="num_elem_to_del" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_cleanup_database_events">
+            <Parameter Name="expire_after_days" Mode="In" Type="Int32" />
+            <Parameter Name="expire_after_events" Mode="In" Type="Int32" />
+            <Parameter Name="expire_history_after_hours" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_cleanup_database_events_table">
+            <Parameter Name="expire_after_days" Mode="In" Type="Int32" />
+            <Parameter Name="expire_after_events" Mode="In" Type="Int32" />
+            <Parameter Name="num_elem_to_del" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="sp_sysdac_drop_database_Result">
+          <Property Type="String" Name="databasename" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="sqlscript" Nullable="true" MaxLength="1000" />
+        </ComplexType>
+        <ComplexType Name="sp_sysdac_rollback_committed_step_Result">
+          <Property Type="String" Name="databasename" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="sqlscript" Nullable="true" MaxLength="1000" />
+        </ComplexType>
+        <ComplexType Name="sp_sysdac_rollback_pending_object_Result">
+          <Property Type="String" Name="databasename" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="sqlscript" Nullable="true" MaxLength="1000" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="masterModelStoreContainer" CdmEntityContainer="masterEntities">
+          <EntitySetMapping Name="cargos">
+            <EntityTypeMapping TypeName="masterModel.cargos">
+              <MappingFragment StoreEntitySet="cargos">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="nome_cargo" ColumnName="nome_cargo" />
+                <ScalarProperty Name="salario" ColumnName="salario" />
+                <ScalarProperty Name="nv_escolaridade" ColumnName="nv_escolaridade" />
+                <ScalarProperty Name="nv_exp" ColumnName="nv_exp" />
+                <ScalarProperty Name="departamento" ColumnName="departamento" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="carga_horaria" ColumnName="carga_horaria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="faltas">
+            <EntityTypeMapping TypeName="masterModel.faltas">
+              <MappingFragment StoreEntitySet="faltas">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="funcionarios_ID" ColumnName="funcionarios_ID" />
+                <ScalarProperty Name="data_falta" ColumnName="data_falta" />
+                <ScalarProperty Name="motivo_falta" ColumnName="motivo_falta" />
+                <ScalarProperty Name="justificativa" ColumnName="justificativa" />
+                <ScalarProperty Name="observacoes" ColumnName="observacoes" />
+                <ScalarProperty Name="duracao_falta" ColumnName="duracao_falta" />
+                <ScalarProperty Name="tipo_falta" ColumnName="tipo_falta" />
+                <ScalarProperty Name="historico_faltas" ColumnName="historico_faltas" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="funcionarios">
+            <EntityTypeMapping TypeName="masterModel.funcionarios">
+              <MappingFragment StoreEntitySet="funcionarios">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="cpf" ColumnName="cpf" />
+                <ScalarProperty Name="rg" ColumnName="rg" />
+                <ScalarProperty Name="tel" ColumnName="tel" />
+                <ScalarProperty Name="gen" ColumnName="gen" />
+                <ScalarProperty Name="dt_ad" ColumnName="dt_ad" />
+                <ScalarProperty Name="nac" ColumnName="nac" />
+                <ScalarProperty Name="endereco" ColumnName="endereco" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="senha" ColumnName="senha" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="id_cargo" ColumnName="id_cargo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="holerite">
+            <EntityTypeMapping TypeName="masterModel.holerite">
+              <MappingFragment StoreEntitySet="holerite">
+                <ScalarProperty Name="data_emissao" ColumnName="data_emissao" />
+                <ScalarProperty Name="periodo_pagamento" ColumnName="periodo_pagamento" />
+                <ScalarProperty Name="total_salario" ColumnName="total_salario" />
+                <ScalarProperty Name="total_desconto" ColumnName="total_desconto" />
+                <ScalarProperty Name="total_liquido" ColumnName="total_liquido" />
+                <ScalarProperty Name="id_funcionario" ColumnName="id_funcionario" />
+                <ScalarProperty Name="beneficios" ColumnName="beneficios" />
+                <ScalarProperty Name="descontos" ColumnName="descontos" />
+                <ScalarProperty Name="status_pagamento" ColumnName="status_pagamento" />
+                <ScalarProperty Name="decimo_terceiro" ColumnName="decimo_terceiro" />
+                <ScalarProperty Name="salario_bruto" ColumnName="salario_bruto" />
+                <ScalarProperty Name="mes_ref" ColumnName="mes_ref" />
+                <ScalarProperty Name="ano_ref" ColumnName="ano_ref" />
+                <ScalarProperty Name="inss" ColumnName="inss" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pgm_horas">
+            <EntityTypeMapping TypeName="masterModel.pgm_horas">
+              <MappingFragment StoreEntitySet="pgm_horas">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Data_registro" ColumnName="Data_registro" />
+                <ScalarProperty Name="Hora_entrada" ColumnName="Hora_entrada" />
+                <ScalarProperty Name="Hora_saida" ColumnName="Hora_saida" />
+                <ScalarProperty Name="Hora_inicio_intervalo" ColumnName="Hora_inicio_intervalo" />
+                <ScalarProperty Name="Hora_fim_intervalo" ColumnName="Hora_fim_intervalo" />
+                <ScalarProperty Name="Horas_trabalhadas" ColumnName="Horas_trabalhadas" />
+                <ScalarProperty Name="Tipo_reg" ColumnName="Tipo_reg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdac_history_internal">
+            <EntityTypeMapping TypeName="masterModel.sysdac_history_internal">
+              <MappingFragment StoreEntitySet="sysdac_history_internal">
+                <ScalarProperty Name="action_id" ColumnName="action_id" />
+                <ScalarProperty Name="sequence_id" ColumnName="sequence_id" />
+                <ScalarProperty Name="instance_id" ColumnName="instance_id" />
+                <ScalarProperty Name="action_type" ColumnName="action_type" />
+                <ScalarProperty Name="action_type_name" ColumnName="action_type_name" />
+                <ScalarProperty Name="dac_object_type" ColumnName="dac_object_type" />
+                <ScalarProperty Name="dac_object_type_name" ColumnName="dac_object_type_name" />
+                <ScalarProperty Name="action_status" ColumnName="action_status" />
+                <ScalarProperty Name="action_status_name" ColumnName="action_status_name" />
+                <ScalarProperty Name="required" ColumnName="required" />
+                <ScalarProperty Name="dac_object_name_pretran" ColumnName="dac_object_name_pretran" />
+                <ScalarProperty Name="dac_object_name_posttran" ColumnName="dac_object_name_posttran" />
+                <ScalarProperty Name="sqlscript" ColumnName="sqlscript" />
+                <ScalarProperty Name="payload" ColumnName="payload" />
+                <ScalarProperty Name="comments" ColumnName="comments" />
+                <ScalarProperty Name="error_string" ColumnName="error_string" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdac_instances_internal">
+            <EntityTypeMapping TypeName="masterModel.sysdac_instances_internal">
+              <MappingFragment StoreEntitySet="sysdac_instances_internal">
+                <ScalarProperty Name="instance_id" ColumnName="instance_id" />
+                <ScalarProperty Name="instance_name" ColumnName="instance_name" />
+                <ScalarProperty Name="type_name" ColumnName="type_name" />
+                <ScalarProperty Name="type_version" ColumnName="type_version" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="type_stream" ColumnName="type_stream" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="logins_Adm">
+            <EntityTypeMapping TypeName="masterModel.logins_Adm">
+              <MappingFragment StoreEntitySet="logins_Adm">
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="senha" ColumnName="senha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdac_instances">
+            <EntityTypeMapping TypeName="masterModel.sysdac_instances">
+              <MappingFragment StoreEntitySet="sysdac_instances">
+                <ScalarProperty Name="instance_id" ColumnName="instance_id" />
+                <ScalarProperty Name="instance_name" ColumnName="instance_name" />
+                <ScalarProperty Name="type_name" ColumnName="type_name" />
+                <ScalarProperty Name="type_version" ColumnName="type_version" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="type_stream" ColumnName="type_stream" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="database_name" ColumnName="database_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bandwidth_usage">
+            <EntityTypeMapping TypeName="masterModel.bandwidth_usage">
+              <MappingFragment StoreEntitySet="bandwidth_usage">
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="database_name" ColumnName="database_name" />
+                <ScalarProperty Name="direction" ColumnName="direction" />
+                <ScalarProperty Name="class" ColumnName="class" />
+                <ScalarProperty Name="time_period" ColumnName="time_period" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="billing">
+            <EntityTypeMapping TypeName="masterModel.billing">
+              <MappingFragment StoreEntitySet="billing">
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="database_name" ColumnName="database_name" />
+                <ScalarProperty Name="data1" ColumnName="data1" />
+                <ScalarProperty Name="data2" ColumnName="data2" />
+                <ScalarProperty Name="data3" ColumnName="data3" />
+                <ScalarProperty Name="data4" ColumnName="data4" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="billed" ColumnName="billed" />
+                <ScalarProperty Name="event_id" ColumnName="event_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="database_connection_stats">
+            <EntityTypeMapping TypeName="masterModel.database_connection_stats">
+              <MappingFragment StoreEntitySet="database_connection_stats">
+                <ScalarProperty Name="database_name" ColumnName="database_name" />
+                <ScalarProperty Name="start_time" ColumnName="start_time" />
+                <ScalarProperty Name="end_time" ColumnName="end_time" />
+                <ScalarProperty Name="success_count" ColumnName="success_count" />
+                <ScalarProperty Name="total_failure_count" ColumnName="total_failure_count" />
+                <ScalarProperty Name="connection_failure_count" ColumnName="connection_failure_count" />
+                <ScalarProperty Name="terminated_connection_count" ColumnName="terminated_connection_count" />
+                <ScalarProperty Name="throttled_connection_count" ColumnName="throttled_connection_count" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="database_error_stats">
+            <EntityTypeMapping TypeName="masterModel.database_error_stats">
+              <MappingFragment StoreEntitySet="database_error_stats">
+                <ScalarProperty Name="database_name" ColumnName="database_name" />
+                <ScalarProperty Name="start_time" ColumnName="start_time" />
+                <ScalarProperty Name="end_time" ColumnName="end_time" />
+                <ScalarProperty Name="error_number" ColumnName="error_number" />
+                <ScalarProperty Name="error_count" ColumnName="error_count" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="database_firewall_rules">
+            <EntityTypeMapping TypeName="masterModel.database_firewall_rules">
+              <MappingFragment StoreEntitySet="database_firewall_rules">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="start_ip_address" ColumnName="start_ip_address" />
+                <ScalarProperty Name="end_ip_address" ColumnName="end_ip_address" />
+                <ScalarProperty Name="create_date" ColumnName="create_date" />
+                <ScalarProperty Name="modify_date" ColumnName="modify_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="database_usage">
+            <EntityTypeMapping TypeName="masterModel.database_usage">
+              <MappingFragment StoreEntitySet="database_usage">
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="sku" ColumnName="sku" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dm_database_copies">
+            <EntityTypeMapping TypeName="masterModel.dm_database_copies">
+              <MappingFragment StoreEntitySet="dm_database_copies">
+                <ScalarProperty Name="database_id" ColumnName="database_id" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="modify_date" ColumnName="modify_date" />
+                <ScalarProperty Name="percent_complete" ColumnName="percent_complete" />
+                <ScalarProperty Name="error_code" ColumnName="error_code" />
+                <ScalarProperty Name="error_desc" ColumnName="error_desc" />
+                <ScalarProperty Name="error_severity" ColumnName="error_severity" />
+                <ScalarProperty Name="error_state" ColumnName="error_state" />
+                <ScalarProperty Name="copy_guid" ColumnName="copy_guid" />
+                <ScalarProperty Name="partner_server" ColumnName="partner_server" />
+                <ScalarProperty Name="partner_database" ColumnName="partner_database" />
+                <ScalarProperty Name="replication_state" ColumnName="replication_state" />
+                <ScalarProperty Name="replication_state_desc" ColumnName="replication_state_desc" />
+                <ScalarProperty Name="maximum_lag" ColumnName="maximum_lag" />
+                <ScalarProperty Name="is_continuous_copy" ColumnName="is_continuous_copy" />
+                <ScalarProperty Name="is_target_role" ColumnName="is_target_role" />
+                <ScalarProperty Name="is_offline_secondary" ColumnName="is_offline_secondary" />
+                <ScalarProperty Name="is_interlink_connected" ColumnName="is_interlink_connected" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="elastic_pool_resource_stats">
+            <EntityTypeMapping TypeName="masterModel.elastic_pool_resource_stats">
+              <MappingFragment StoreEntitySet="elastic_pool_resource_stats">
+                <ScalarProperty Name="start_time" ColumnName="start_time" />
+                <ScalarProperty Name="end_time" ColumnName="end_time" />
+                <ScalarProperty Name="elastic_pool_name" ColumnName="elastic_pool_name" />
+                <ScalarProperty Name="avg_cpu_percent" ColumnName="avg_cpu_percent" />
+                <ScalarProperty Name="avg_data_io_percent" ColumnName="avg_data_io_percent" />
+                <ScalarProperty Name="avg_log_write_percent" ColumnName="avg_log_write_percent" />
+                <ScalarProperty Name="avg_storage_percent" ColumnName="avg_storage_percent" />
+                <ScalarProperty Name="max_worker_percent" ColumnName="max_worker_percent" />
+                <ScalarProperty Name="max_session_percent" ColumnName="max_session_percent" />
+                <ScalarProperty Name="elastic_pool_dtu_limit" ColumnName="elastic_pool_dtu_limit" />
+                <ScalarProperty Name="elastic_pool_storage_limit_mb" ColumnName="elastic_pool_storage_limit_mb" />
+                <ScalarProperty Name="max_xtp_storage_percent" ColumnName="max_xtp_storage_percent" />
+                <ScalarProperty Name="avg_login_rate_percent" ColumnName="avg_login_rate_percent" />
+                <ScalarProperty Name="avg_instance_cpu_percent" ColumnName="avg_instance_cpu_percent" />
+                <ScalarProperty Name="avg_instance_memory_percent" ColumnName="avg_instance_memory_percent" />
+                <ScalarProperty Name="elastic_pool_cpu_limit" ColumnName="elastic_pool_cpu_limit" />
+                <ScalarProperty Name="avg_allocated_storage_percent" ColumnName="avg_allocated_storage_percent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="event_history_log">
+            <EntityTypeMapping TypeName="masterModel.event_history_log">
+              <MappingFragment StoreEntitySet="event_history_log">
+                <ScalarProperty Name="source_sequence_id" ColumnName="source_sequence_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="event_log">
+            <EntityTypeMapping TypeName="masterModel.event_log">
+              <MappingFragment StoreEntitySet="event_log">
+                <ScalarProperty Name="database_name" ColumnName="database_name" />
+                <ScalarProperty Name="start_time" ColumnName="start_time" />
+                <ScalarProperty Name="end_time" ColumnName="end_time" />
+                <ScalarProperty Name="event_category" ColumnName="event_category" />
+                <ScalarProperty Name="event_type" ColumnName="event_type" />
+                <ScalarProperty Name="event_subtype" ColumnName="event_subtype" />
+                <ScalarProperty Name="event_subtype_desc" ColumnName="event_subtype_desc" />
+                <ScalarProperty Name="severity" ColumnName="severity" />
+                <ScalarProperty Name="event_count" ColumnName="event_count" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="additional_data" ColumnName="additional_data" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="firewall_rules">
+            <EntityTypeMapping TypeName="masterModel.firewall_rules">
+              <MappingFragment StoreEntitySet="firewall_rules">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="start_ip_address" ColumnName="start_ip_address" />
+                <ScalarProperty Name="end_ip_address" ColumnName="end_ip_address" />
+                <ScalarProperty Name="create_date" ColumnName="create_date" />
+                <ScalarProperty Name="modify_date" ColumnName="modify_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="geo_replication_links">
+            <EntityTypeMapping TypeName="masterModel.geo_replication_links">
+              <MappingFragment StoreEntitySet="geo_replication_links">
+                <ScalarProperty Name="database_id" ColumnName="database_id" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="modify_date" ColumnName="modify_date" />
+                <ScalarProperty Name="link_guid" ColumnName="link_guid" />
+                <ScalarProperty Name="partner_server" ColumnName="partner_server" />
+                <ScalarProperty Name="partner_database" ColumnName="partner_database" />
+                <ScalarProperty Name="replication_state" ColumnName="replication_state" />
+                <ScalarProperty Name="replication_state_desc" ColumnName="replication_state_desc" />
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="role_desc" ColumnName="role_desc" />
+                <ScalarProperty Name="secondary_allow_connections" ColumnName="secondary_allow_connections" />
+                <ScalarProperty Name="secondary_allow_connections_desc" ColumnName="secondary_allow_connections_desc" />
+                <ScalarProperty Name="percent_copied" ColumnName="percent_copied" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="resource_stats">
+            <EntityTypeMapping TypeName="masterModel.resource_stats">
+              <MappingFragment StoreEntitySet="resource_stats">
+                <ScalarProperty Name="start_time" ColumnName="start_time" />
+                <ScalarProperty Name="end_time" ColumnName="end_time" />
+                <ScalarProperty Name="database_name" ColumnName="database_name" />
+                <ScalarProperty Name="sku" ColumnName="sku" />
+                <ScalarProperty Name="storage_in_megabytes" ColumnName="storage_in_megabytes" />
+                <ScalarProperty Name="avg_cpu_percent" ColumnName="avg_cpu_percent" />
+                <ScalarProperty Name="avg_data_io_percent" ColumnName="avg_data_io_percent" />
+                <ScalarProperty Name="avg_log_write_percent" ColumnName="avg_log_write_percent" />
+                <ScalarProperty Name="max_worker_percent" ColumnName="max_worker_percent" />
+                <ScalarProperty Name="max_session_percent" ColumnName="max_session_percent" />
+                <ScalarProperty Name="dtu_limit" ColumnName="dtu_limit" />
+                <ScalarProperty Name="xtp_storage_percent" ColumnName="xtp_storage_percent" />
+                <ScalarProperty Name="avg_login_rate_percent" ColumnName="avg_login_rate_percent" />
+                <ScalarProperty Name="avg_instance_cpu_percent" ColumnName="avg_instance_cpu_percent" />
+                <ScalarProperty Name="avg_instance_memory_percent" ColumnName="avg_instance_memory_percent" />
+                <ScalarProperty Name="cpu_limit" ColumnName="cpu_limit" />
+                <ScalarProperty Name="allocated_storage_in_megabytes" ColumnName="allocated_storage_in_megabytes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="resource_stats_ex">
+            <EntityTypeMapping TypeName="masterModel.resource_stats_ex">
+              <MappingFragment StoreEntitySet="resource_stats_ex">
+                <ScalarProperty Name="start_time" ColumnName="start_time" />
+                <ScalarProperty Name="end_time" ColumnName="end_time" />
+                <ScalarProperty Name="database_name" ColumnName="database_name" />
+                <ScalarProperty Name="low_key" ColumnName="low_key" />
+                <ScalarProperty Name="sku" ColumnName="sku" />
+                <ScalarProperty Name="resource_capacity" ColumnName="resource_capacity" />
+                <ScalarProperty Name="usage_in_seconds" ColumnName="usage_in_seconds" />
+                <ScalarProperty Name="storage_in_megabytes" ColumnName="storage_in_megabytes" />
+                <ScalarProperty Name="max_storage_in_megabytes" ColumnName="max_storage_in_megabytes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="resource_usage_ex">
+            <EntityTypeMapping TypeName="masterModel.resource_usage_ex">
+              <MappingFragment StoreEntitySet="resource_usage_ex">
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="database_name" ColumnName="database_name" />
+                <ScalarProperty Name="low_key" ColumnName="low_key" />
+                <ScalarProperty Name="sku" ColumnName="sku" />
+                <ScalarProperty Name="resource_capacity" ColumnName="resource_capacity" />
+                <ScalarProperty Name="usage_in_seconds" ColumnName="usage_in_seconds" />
+                <ScalarProperty Name="storage_in_megabytes" ColumnName="storage_in_megabytes" />
+                <ScalarProperty Name="max_storage_in_megabytes" ColumnName="max_storage_in_megabytes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sql_logins">
+            <EntityTypeMapping TypeName="masterModel.sql_logins">
+              <MappingFragment StoreEntitySet="sql_logins">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="sid" ColumnName="sid" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="type_desc" ColumnName="type_desc" />
+                <ScalarProperty Name="is_disabled" ColumnName="is_disabled" />
+                <ScalarProperty Name="create_date" ColumnName="create_date" />
+                <ScalarProperty Name="modify_date" ColumnName="modify_date" />
+                <ScalarProperty Name="default_database_name" ColumnName="default_database_name" />
+                <ScalarProperty Name="default_language_name" ColumnName="default_language_name" />
+                <ScalarProperty Name="credential_id" ColumnName="credential_id" />
+                <ScalarProperty Name="is_policy_checked" ColumnName="is_policy_checked" />
+                <ScalarProperty Name="is_expiration_checked" ColumnName="is_expiration_checked" />
+                <ScalarProperty Name="password_hash" ColumnName="password_hash" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_sysdac_add_history_entry" FunctionName="masterModel.Store.sp_sysdac_add_history_entry" />
+          <FunctionImportMapping FunctionImportName="sp_sysdac_add_instance" FunctionName="masterModel.Store.sp_sysdac_add_instance" />
+          <FunctionImportMapping FunctionImportName="sp_sysdac_delete_instance" FunctionName="masterModel.Store.sp_sysdac_delete_instance" />
+          <FunctionImportMapping FunctionImportName="sp_sysdac_drop_database" FunctionName="masterModel.Store.sp_sysdac_drop_database">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="masterModel.sp_sysdac_drop_database_Result">
+                <ScalarProperty Name="databasename" ColumnName="databasename" />
+                <ScalarProperty Name="sqlscript" ColumnName="sqlscript" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_sysdac_ensure_dac_creator" FunctionName="masterModel.Store.sp_sysdac_ensure_dac_creator" />
+          <FunctionImportMapping FunctionImportName="sp_sysdac_rename_database" FunctionName="masterModel.Store.sp_sysdac_rename_database" />
+          <FunctionImportMapping FunctionImportName="sp_sysdac_resolve_pending_entry" FunctionName="masterModel.Store.sp_sysdac_resolve_pending_entry" />
+          <FunctionImportMapping FunctionImportName="sp_sysdac_rollback_all_pending_objects" FunctionName="masterModel.Store.sp_sysdac_rollback_all_pending_objects" />
+          <FunctionImportMapping FunctionImportName="sp_sysdac_rollback_committed_step" FunctionName="masterModel.Store.sp_sysdac_rollback_committed_step">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="masterModel.sp_sysdac_rollback_committed_step_Result">
+                <ScalarProperty Name="databasename" ColumnName="databasename" />
+                <ScalarProperty Name="sqlscript" ColumnName="sqlscript" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_sysdac_rollback_pending_object" FunctionName="masterModel.Store.sp_sysdac_rollback_pending_object">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="masterModel.sp_sysdac_rollback_pending_object_Result">
+                <ScalarProperty Name="databasename" ColumnName="databasename" />
+                <ScalarProperty Name="sqlscript" ColumnName="sqlscript" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_sysdac_setreadonly_database" FunctionName="masterModel.Store.sp_sysdac_setreadonly_database" />
+          <FunctionImportMapping FunctionImportName="sp_sysdac_update_history_entry" FunctionName="masterModel.Store.sp_sysdac_update_history_entry" />
+          <FunctionImportMapping FunctionImportName="sp_sysdac_upgrade_instance" FunctionName="masterModel.Store.sp_sysdac_upgrade_instance" />
+          <FunctionImportMapping FunctionImportName="sp_add_database_events" FunctionName="masterModel.Store.sp_add_database_events" />
+          <FunctionImportMapping FunctionImportName="sp_cleanup_database_event_update_history_table" FunctionName="masterModel.Store.sp_cleanup_database_event_update_history_table" />
+          <FunctionImportMapping FunctionImportName="sp_cleanup_database_events" FunctionName="masterModel.Store.sp_cleanup_database_events" />
+          <FunctionImportMapping FunctionImportName="sp_cleanup_database_events_table" FunctionName="masterModel.Store.sp_cleanup_database_events_table" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
